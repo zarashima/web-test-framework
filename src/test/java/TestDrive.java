@@ -10,7 +10,7 @@ import javax.inject.Inject;
 })
 
 public class TestDrive {
-   @Inject
+   @Inject @Firefox
    DriverManager driverManager;
 
    @Inject
@@ -23,6 +23,7 @@ public class TestDrive {
 
    @Test
    public void homePageTest() {
+
        // No creation logic for driver instance as it it's covered by Guice
        driver.get("https://another-nodejs-shopping-cart.herokuapp.com/");
        Assert.assertEquals(driver.getTitle(),"Shopping Cart");
