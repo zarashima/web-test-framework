@@ -1,2 +1,1 @@
-# guice-driver-managers
-Using Guice for Factory design pattern
+Use [Guice](https://github.com/google/guice) in factory design pattern
