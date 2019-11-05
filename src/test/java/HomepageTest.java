@@ -9,7 +9,7 @@ import javax.inject.Inject;
         DriverModule.class
 })
 
-public class TestDrive {
+public class HomepageTest {
    @Inject @Chrome
    DriverManager driverManager;
 
@@ -26,4 +26,5 @@ public class TestDrive {
        driver.get("https://another-nodejs-shopping-cart.herokuapp.com/");
        Assert.assertEquals(driver.getTitle(),"Shopping Cart");
    }
+
 }
