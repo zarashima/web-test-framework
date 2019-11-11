@@ -1,11 +1,8 @@
-import factory.DriverManager;
-import module.Chrome;
-import module.DriverModule;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.devtools.DevTools;
+import utils.modules.DriverModule;
 import org.openqa.selenium.devtools.network.Network;
-import org.testng.Assert;
 import org.testng.annotations.*;
+import pages.HomePage;
+
 import javax.inject.Inject;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -20,7 +17,7 @@ public class HomepageTest extends BaseTest {
    HomePage homePage;
 
    @Test
-   public void homePageTest() {
+   public void verifyClearedCookies() {
        homePage.goTo();
        assertThat(driverManager.getDriver().manage().getCookies()).isNotEmpty();
        devTools.send(Network.clearBrowserCookies());

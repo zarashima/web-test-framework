@@ -1,11 +1,11 @@
-package module;
+package utils.modules;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Scopes;
-import factory.ChromeDriverManager;
-import factory.DriverManager;
-import factory.FirefoxDriverManager;
+import managers.ChromeDriverManager;
+import managers.DriverManager;
+import managers.FirefoxDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;

@@ -1,4 +1,4 @@
-package factory;
+package managers;
 
 import org.openqa.selenium.WebDriver;
 

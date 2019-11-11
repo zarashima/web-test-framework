@@ -1,5 +1,8 @@
+package pages;
+
 import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;
+import widget.ProductWidget;
 
 public class HomePage {
     private final WebDriver driver;
@@ -12,11 +15,11 @@ public class HomePage {
         this.driver = driver;
     }
 
-    ProductWidget getProductWidget() {
+    public ProductWidget getProductWidget() {
         return productWidget;
     }
 
-    void goTo() {
+    public void goTo() {
         this.driver.get("https://another-nodejs-shopping-cart.herokuapp.com/");
     }
 }

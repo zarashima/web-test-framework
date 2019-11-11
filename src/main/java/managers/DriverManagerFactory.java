@@ -1,4 +1,4 @@
-package factory;
+package managers;
 
 public class DriverManagerFactory {
     public static DriverManager getManager(DriverType type) {
