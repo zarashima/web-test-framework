@@ -1,4 +1,6 @@
 import factory.DriverManager;
+import module.Chrome;
+import module.DriverModule;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
@@ -20,18 +22,16 @@ public class BaseTest {
     @Inject
     WebDriver driver;
 
-    protected DevTools chromeDevTools;
+    @Inject
+    DevTools devTools;
 
     @BeforeMethod
     public void beforeMethod() {
-        chromeDevTools = ((ChromeDriver)driver).getDevTools();
-        chromeDevTools.createSession();
+        devTools.createSession();
     }
-
 
     @AfterMethod
     public void afterMethod() {
         driverManager.quitDriver();
     }
-
 }

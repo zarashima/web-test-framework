@@ -1,26 +1,16 @@
+package module;
+
 import com.google.inject.AbstractModule;
-import com.google.inject.BindingAnnotation;
 import com.google.inject.Provides;
 import com.google.inject.Scopes;
-import com.google.inject.name.Named;
 import factory.ChromeDriverManager;
 import factory.DriverManager;
 import factory.FirefoxDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.devtools.DevTools;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-@BindingAnnotation
-@Target({ FIELD, PARAMETER, METHOD }) @Retention(RUNTIME)
-@interface Firefox{}
-
-@BindingAnnotation
-@Target({ FIELD, PARAMETER, METHOD }) @Retention(RUNTIME)
-@interface Chrome{}
+import java.io.Closeable;
 
 public class DriverModule extends AbstractModule {
     @Override
@@ -34,6 +24,10 @@ public class DriverModule extends AbstractModule {
                 .annotatedWith(Chrome.class)
                 .to(ChromeDriverManager.class)
                 .in(Scopes.SINGLETON);
+
+        bind(Closeable.class)
+                .to(DevTools.class)
+                .in(Scopes.SINGLETON);
     }
 
     @Provides
@@ -41,4 +35,8 @@ public class DriverModule extends AbstractModule {
         return driverManager.getDriver();
     }
 
+    @Provides
+    public DevTools getDevTools(@Chrome DriverManager driverManager) {
+        return ((ChromeDriver) driverManager.getDriver()).getDevTools();
+    }
 }
