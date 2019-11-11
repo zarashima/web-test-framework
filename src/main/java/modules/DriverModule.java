@@ -1,11 +1,12 @@
-package utils.modules;
+package modules;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Scopes;
-import managers.ChromeDriverManager;
+import managers.browsers.ChromeDriverManager;
 import managers.DriverManager;
-import managers.FirefoxDriverManager;
+import managers.browsers.FirefoxDriverManager;
+import managers.browsers.IEDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
@@ -23,6 +24,11 @@ public class DriverModule extends AbstractModule {
         bind(DriverManager.class)
                 .annotatedWith(Chrome.class)
                 .to(ChromeDriverManager.class)
+                .in(Scopes.SINGLETON);
+
+        bind(DriverManager.class)
+                .annotatedWith(InternetExplorer.class)
+                .to(IEDriverManager.class)
                 .in(Scopes.SINGLETON);
 
         bind(Closeable.class)

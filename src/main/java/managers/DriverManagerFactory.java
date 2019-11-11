@@ -1,5 +1,9 @@
 package managers;
 
+import managers.browsers.ChromeDriverManager;
+import managers.browsers.FirefoxDriverManager;
+import managers.browsers.IEDriverManager;
+
 public class DriverManagerFactory {
     public static DriverManager getManager(DriverType type) {
         DriverManager driverManager;

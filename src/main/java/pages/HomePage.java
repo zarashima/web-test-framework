@@ -18,8 +18,4 @@ public class HomePage {
     public ProductWidget getProductWidget() {
         return productWidget;
     }
-
-    public void goTo() {
-        this.driver.get("https://another-nodejs-shopping-cart.herokuapp.com/");
-    }
 }

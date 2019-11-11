@@ -1,4 +1,4 @@
-package utils.modules;
+package modules;
 
 import com.google.inject.BindingAnnotation;
 

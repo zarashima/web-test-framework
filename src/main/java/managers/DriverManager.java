@@ -3,7 +3,7 @@ package managers;
 import org.openqa.selenium.WebDriver;
 
 public abstract class DriverManager {
-    WebDriver driver;
+    protected WebDriver driver;
     public abstract void createDriver();
     public WebDriver getDriver() {
         if (null == driver) {
@@ -11,7 +11,6 @@ public abstract class DriverManager {
         }
         return driver;
     }
-
     public void quitDriver() {
         if (null != driver) {
             driver.quit();
