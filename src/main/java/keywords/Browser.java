@@ -10,8 +10,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Browser {
 
-    @Inject
-    WebDriver driver;
+    @Inject WebDriver driver;
 
     public void goTo(String url) {
         checkNotNull(url, "URL address must not be NULL");
@@ -22,7 +21,4 @@ public class Browser {
         return driver.manage().getCookies();
     }
 
-    public Cookie getACookie(String cookieName) {
-        return driver.manage().getCookieNamed(cookieName);
-    }
 }

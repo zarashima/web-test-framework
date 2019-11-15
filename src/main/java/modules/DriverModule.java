@@ -10,6 +10,7 @@ import managers.browsers.IEDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
+import reports.ExtentTest;
 
 import java.io.Closeable;
 
@@ -34,6 +35,7 @@ public class DriverModule extends AbstractModule {
         bind(Closeable.class)
                 .to(DevTools.class)
                 .in(Scopes.SINGLETON);
+
     }
 
     @Provides

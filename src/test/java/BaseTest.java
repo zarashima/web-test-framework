@@ -1,12 +1,12 @@
+import keywords.Browser;
+import keywords.Element;
 import managers.DriverManager;
 import modules.Chrome;
 import modules.DriverModule;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Guice;
-
 import javax.inject.Inject;
 
 @Guice(modules = {
@@ -15,19 +15,10 @@ import javax.inject.Inject;
 
 public class BaseTest {
 
-    @Inject @Chrome
-    DriverManager driverManager;
-
-    @Inject
-    WebDriver driver;
-
-    @Inject
-    DevTools devTools;
-
-    @BeforeMethod
-    public void beforeMethod() {
-        devTools.createSession();
-    }
+    @Inject @Chrome DriverManager driverManager;
+    @Inject DevTools devTools;
+    @Inject Browser browserKeywords;
+    @Inject Element elementKeywords;
 
     @AfterMethod
     public void afterMethod() {

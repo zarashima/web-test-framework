@@ -1,21 +1,19 @@
 package pages;
 
+import abstractions.InternalPageFactory;
 import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;
-import widget.ProductWidget;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class HomePage {
-    private final WebDriver driver;
+public class HomePage extends BasePage {
+
+    @FindBy(xpath = "/html/body/div/div[2]/div[1]/div/div/div/a")
+    public WebElement addToCartButton;
 
     @Inject
-    public ProductWidget productWidget;
-
-    @Inject
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public ProductWidget getProductWidget() {
-        return productWidget;
+    public HomePage(WebDriver driver) throws IllegalAccessException {
+        super(driver);
+        InternalPageFactory.initElements(driver, this);
     }
 }
