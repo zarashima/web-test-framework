@@ -1,38 +1,36 @@
 package abstractions;
 
 import com.google.inject.Inject;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
-public class ElementProxy implements InvocationHandler {
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.awaitility.Awaitility.await;
 
-    private final WebElement element;
-    @Inject private WebDriverWait wait;
-    @Inject WebDriver driver;
+class ElementProxy implements InvocationHandler {
 
-    ElementProxy(WebElement element) {
-        this.element = element;
-    }
+  private final WebElement element;
+  @Inject
+  private WebDriverWait wait;
+  @Inject
+  WebDriver driver;
 
-    @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        this.waitForElementVisible();
-        Object result = method.invoke(element, args);
-        return result;
-    }
+  ElementProxy(WebElement element) {
+    this.element = element;
+  }
 
-    private void waitForElementVisible() {
-        System.out.println("Test");
-        /*wait = new WebDriverWait(driver, 30);
-        wait.ignoring(StaleElementReferenceException.class)
-                .until(ExpectedConditions.visibilityOf(element));*/
+  @Override
+  public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    this.waitForElementDisplay();
+    return method.invoke(element, args);
+  }
 
-    }
+  private void waitForElementDisplay() {
+    await().atMost(30, SECONDS).until(element::isDisplayed);
+  }
 
 }

@@ -5,13 +5,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Element {
-    @Inject WebDriver driver;
 
-    public String getText(WebElement element) {
-        return element.getText();
-    }
+  @Inject
+  WebDriver driver;
 
-    public void click(WebElement element) {
-        element.click();
-    }
+  public String getText(WebElement element) {
+    return element.getText();
+  }
+
+  public void click(WebElement element) {
+    element.click();
+  }
 }

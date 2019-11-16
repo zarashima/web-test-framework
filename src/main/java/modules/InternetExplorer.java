@@ -9,5 +9,8 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @BindingAnnotation
-@Target({ FIELD, PARAMETER, METHOD }) @Retention(RUNTIME)
-@interface InternetExplorer {}
+@Target({FIELD, PARAMETER, METHOD})
+@Retention(RUNTIME)
+@interface InternetExplorer {
+
+}
