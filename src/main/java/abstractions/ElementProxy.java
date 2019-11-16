@@ -1,6 +1,7 @@
 package abstractions;
 
 import com.google.inject.Inject;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,8 +16,6 @@ class ElementProxy implements InvocationHandler {
 
   private final WebElement element;
   @Inject
-  private WebDriverWait wait;
-  @Inject
   WebDriver driver;
 
   ElementProxy(WebElement element) {
@@ -30,7 +29,9 @@ class ElementProxy implements InvocationHandler {
   }
 
   private void waitForElementDisplay() {
-    await().atMost(30, SECONDS).until(element::isDisplayed);
+    await().atMost(30, SECONDS)
+        .ignoreException(StaleElementReferenceException.class)
+        .until(element::isDisplayed);
   }
 
 }

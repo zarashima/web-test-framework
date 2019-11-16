@@ -2,10 +2,11 @@ package tests;
 
 import keywords.Browser;
 import org.openqa.selenium.devtools.network.Network;
-import org.testng.annotations.*;
 import listeners.TestListener;
 
 import javax.inject.Inject;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 
