@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -15,6 +14,7 @@ import static org.awaitility.Awaitility.await;
 class ElementProxy implements InvocationHandler {
 
   private final WebElement element;
+
   @Inject
   WebDriver driver;
 
