@@ -1,14 +1,12 @@
 package abstractions;
 
 import com.google.inject.Inject;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.awaitility.Awaitility.await;
 
 class ElementProxy implements InvocationHandler {
@@ -18,20 +16,17 @@ class ElementProxy implements InvocationHandler {
   @Inject
   WebDriver driver;
 
+  @Inject
+  ElementEnsure elementEnsure;
+
   ElementProxy(WebElement element) {
     this.element = element;
   }
 
   @Override
   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-    this.waitForElementDisplay();
+    ElementEnsure.ensureElementVisible(element);
     return method.invoke(element, args);
-  }
-
-  private void waitForElementDisplay() {
-    await().atMost(30, SECONDS)
-        .ignoreException(StaleElementReferenceException.class)
-        .until(element::isDisplayed);
   }
 
 }

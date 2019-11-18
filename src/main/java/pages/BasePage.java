@@ -3,6 +3,7 @@ package pages;
 import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.PropertyUtils;
 
 class BasePage {
 
@@ -11,7 +12,7 @@ class BasePage {
   private final WebDriverWait wait;
 
   BasePage(WebDriver driver) {
-    this.wait = new WebDriverWait(driver, 30);
+    this.wait = new WebDriverWait(driver, PropertyUtils.getInstance().getWebTimeout());
     this.driver = driver;
   }
 }
