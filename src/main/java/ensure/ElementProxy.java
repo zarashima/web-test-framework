@@ -21,8 +21,8 @@ class ElementProxy implements InvocationHandler {
 
   @Override
   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-    ElementEnsure.ensureElementVisible(element, driver);
-    ElementEnsure.ensureElementInView(element, driver);
+    Ensure.ensureElementVisible(element, driver);
+    Ensure.ensureElementInView(element, driver);
     return method.invoke(element, args);
   }
 }

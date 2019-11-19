@@ -10,20 +10,22 @@ import utils.PropertyUtils;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.awaitility.Awaitility.await;
 
-class ElementEnsure {
+class Ensure {
+
+    private WebElement element;
 
     @Inject
-    private ElementEnsure(WebElement element) {
-        WebElement element1 = element;
+    private Ensure(WebElement element) {
+        this.element = element;
     }
 
-    static void ensureElementVisible(WebElement element, WebDriver driver) {
+    protected static void ensureElementVisible(WebElement element, WebDriver driver) {
         await().atMost(PropertyUtils.getInstance().getWebTimeout(), SECONDS)
                 .ignoreException(StaleElementReferenceException.class)
                 .until(element::isDisplayed);
     }
 
-    static void ensureElementInView(WebElement element, WebDriver driver) {
+    protected static void ensureElementInView(WebElement element, WebDriver driver) {
         JavascriptExecutor js = ((JavascriptExecutor) driver);
         js.executeScript("arguments[0].scrollIntoView", element);
     }

@@ -10,7 +10,7 @@ import utils.PropertyUtils;
 public class Wait {
 
     @Inject
-    WebDriver driver;
+    private WebDriver driver;
 
     @Inject
     private WebDriverWait wait;

@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 public class InternalPageFactory {
 
   @Inject
-  WebDriver driver;
+  private WebDriver driver;
 
   public static <T> void initElements(WebDriver driver, T pageObject)
       throws IllegalAccessException {
