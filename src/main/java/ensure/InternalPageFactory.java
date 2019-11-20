@@ -8,9 +8,6 @@ import java.lang.reflect.Field;
 
 public class InternalPageFactory {
 
-  @Inject
-  private WebDriver driver;
-
   public static <T> void initElements(WebDriver driver, T pageObject)
       throws IllegalAccessException {
     org.openqa.selenium.support.PageFactory.initElements(driver, pageObject);
