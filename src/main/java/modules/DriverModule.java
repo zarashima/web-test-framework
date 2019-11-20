@@ -3,15 +3,12 @@ package modules;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Scopes;
+import ensure.Ensure;
 import managers.ChromeDriverManager;
 import managers.DriverManager;
 import managers.FirefoxDriverManager;
 import managers.IEDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.devtools.DevTools;
-
-import java.io.Closeable;
 
 public class DriverModule extends AbstractModule {
 
@@ -31,11 +28,6 @@ public class DriverModule extends AbstractModule {
         .annotatedWith(InternetExplorer.class)
         .to(IEDriverManager.class)
         .in(Scopes.SINGLETON);
-
-    bind(Closeable.class)
-        .to(DevTools.class)
-        .in(Scopes.SINGLETON);
-
   }
 
   @Provides
@@ -44,7 +36,7 @@ public class DriverModule extends AbstractModule {
   }
 
   @Provides
-  public DevTools getDevTools(@Chrome DriverManager driverManager) {
-    return ((ChromeDriver) driverManager.getDriver()).getDevTools();
+  public Ensure getEnsure(@Chrome DriverManager driverManager) {
+    return new Ensure(driverManager.getDriver());
   }
 }

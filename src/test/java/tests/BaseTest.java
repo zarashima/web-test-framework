@@ -7,7 +7,6 @@ import managers.DriverManager;
 import modules.Chrome;
 import modules.DriverModule;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
@@ -21,14 +20,11 @@ import utils.ReportUtils;
 })
 
 public class BaseTest {
-
   @Inject
   @Chrome
   DriverManager driverManager;
   @Inject
   WebDriver driver;
-  @Inject
-  DevTools devTools;
   @Inject
   Browser browserKeywords;
   @Inject
