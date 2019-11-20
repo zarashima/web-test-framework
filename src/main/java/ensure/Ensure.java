@@ -20,9 +20,7 @@ class Ensure {
     }
 
     protected static void ensureElementVisible(WebElement element, WebDriver driver) {
-        await().atMost(PropertyUtils.getInstance().getWebTimeout(), SECONDS)
-                .ignoreException(StaleElementReferenceException.class)
-                .until(element::isDisplayed);
+        Wait.waitForElementVisible(element, driver);
     }
 
     protected static void ensureElementInView(WebElement element, WebDriver driver) {

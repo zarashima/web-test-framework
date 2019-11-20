@@ -13,15 +13,10 @@ public class Wait {
     private WebDriver driver;
 
     @Inject
-    private WebDriverWait wait;
+    private static WebDriverWait wait;
 
-    @Inject
-    Wait(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, PropertyUtils.getInstance().getWebTimeout());
-    }
-
-    public void waitForElementVisible(WebElement element) {
+    public static void waitForElementVisible(WebElement element, WebDriver driver) {
+        wait = new WebDriverWait(driver, PropertyUtils.getInstance().getWebTimeout());
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
