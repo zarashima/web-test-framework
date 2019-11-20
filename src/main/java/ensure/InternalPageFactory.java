@@ -1,13 +1,11 @@
 package ensure;
 
-import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.lang.reflect.Field;
 
 public class InternalPageFactory {
-
   public static <T> void initElements(WebDriver driver, T pageObject)
       throws IllegalAccessException {
     org.openqa.selenium.support.PageFactory.initElements(driver, pageObject);
