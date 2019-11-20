@@ -1,9 +1,10 @@
 package ensure;
 
+import com.google.inject.Inject;
 import modules.DriverModule;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Guice;
+import webdriver.DriverFactory;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -16,18 +17,16 @@ class ElementProxy implements InvocationHandler {
 
   private final WebElement element;
 
-  private final WebDriver driver;
+  @Inject
+  private Ensure ensure;
 
-  Ensure ensure;
-
-  ElementProxy(WebElement element, WebDriver driver) {
+  ElementProxy(WebElement element) {
     this.element = element;
-    this.driver = driver;
   }
 
   @Override
   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-    ensure = new Ensure(driver);
+    //ensure = new Ensure(DriverFactory.getInstance().getDriver());
     ensure.with(element)
             .shouldVisible().inView();
     return method.invoke(element, args);

@@ -4,10 +4,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import ensure.Ensure;
-import managers.ChromeDriverManager;
-import managers.DriverManager;
-import managers.FirefoxDriverManager;
-import managers.IEDriverManager;
+import webdriver.*;
 import org.openqa.selenium.WebDriver;
 
 public class DriverModule extends AbstractModule {
@@ -28,15 +25,14 @@ public class DriverModule extends AbstractModule {
         .annotatedWith(InternetExplorer.class)
         .to(IEDriverManager.class)
         .in(Scopes.SINGLETON);
+
+    bind(Ensure.class).toInstance(new Ensure(DriverFactory.getInstance().getDriver()));
+
   }
 
   @Provides
-  public WebDriver getDriver(@Chrome DriverManager driverManager) {
-    return driverManager.getDriver();
+  public WebDriver getDriver() {
+    return DriverFactory.getInstance().getDriver();
   }
 
-  @Provides
-  public Ensure getEnsure(@Chrome DriverManager driverManager) {
-    return new Ensure(driverManager.getDriver());
-  }
 }

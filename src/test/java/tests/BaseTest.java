@@ -1,10 +1,6 @@
 package tests;
 
 import com.aventstack.extentreports.service.ExtentTestManager;
-import keywords.Browser;
-import keywords.Element;
-import managers.DriverManager;
-import modules.Chrome;
 import modules.DriverModule;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -12,23 +8,18 @@ import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Guice;
-import javax.inject.Inject;
 import utils.ReportUtils;
+import webdriver.DriverFactory;
+
+import static webdriver.DriverFactory.getInstance;
 
 @Guice(modules = {
-    DriverModule.class
+        DriverModule.class
 })
 
 public class BaseTest {
-  @Inject
-  @Chrome
-  DriverManager driverManager;
-  @Inject
-  WebDriver driver;
-  @Inject
-  Browser browserKeywords;
-  @Inject
-  Element elementKeywords;
+
+  WebDriver driver = getInstance().getDriver();
 
   static {
     System.setProperty("extent.reporter.html.out", ReportUtils.getReportFileLocation());
@@ -44,6 +35,6 @@ public class BaseTest {
   @AfterMethod(alwaysRun = true)
   public void afterMethod() {
     ExtentTestManager.getTest().assignCategory(((RemoteWebDriver) driver).getCapabilities().getBrowserName());
-    driverManager.quitDriver();
+    DriverFactory.getInstance().removeDriver();
   }
 }

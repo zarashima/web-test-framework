@@ -1,11 +1,11 @@
 package tests;
 
 import com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter;
+import com.google.inject.Inject;
 import listeners.TestListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.HomePage;
-import javax.inject.Inject;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -17,8 +17,9 @@ public class HomepageTest extends BaseTest {
 
   @Test(description = "Test")
   public void verifyPurchaseText() {
-    browserKeywords.goTo("https://another-nodejs-shopping-cart.herokuapp.com/");
-    assertThat(elementKeywords.getText(homePage.addToCartButton)).isEqualTo("Add to cart");
-    elementKeywords.click(homePage.addToCartButton);
+    driver.get("https://katalon.com");
+    //assertThat(elementKeywords.getText(homePage.addToCartButton)).isEqualTo("Add to cart");
+    //HomePage homePage = new HomePage(driver);
+    homePage.addToCartButton.click();
   }
 }

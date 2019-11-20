@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 
 import java.lang.reflect.Field;
 
-public class InternalPageFactory {
+public class CustomPageFactory {
   public static <T> void initElements(WebDriver driver, T pageObject)
       throws IllegalAccessException {
     org.openqa.selenium.support.PageFactory.initElements(driver, pageObject);
@@ -13,7 +13,7 @@ public class InternalPageFactory {
       if (f.getType().equals(WebElement.class)) {
         boolean accessible = f.isAccessible();
         f.setAccessible(true);
-        f.set(pageObject, ElementGuard.guard((WebElement) f.get(pageObject), driver));
+        f.set(pageObject, ElementGuard.guard((WebElement) f.get(pageObject)));
         f.setAccessible(accessible);
       }
     }

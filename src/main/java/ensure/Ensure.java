@@ -10,6 +10,7 @@ import utils.PropertyUtils;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Ensure {
+
     @Inject
     private WebDriver driver;
 
@@ -21,7 +22,7 @@ public class Ensure {
     }
 
     protected Ensure with(WebElement element) {
-        checkNotNull(element, "Element must not be null");
+        checkNotNull(element, "Input element must not be null");
         this.element = element;
         return this;
     }

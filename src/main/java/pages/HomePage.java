@@ -1,7 +1,7 @@
 package pages;
 
 import com.google.inject.Inject;
-import ensure.InternalPageFactory;
+import ensure.CustomPageFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +14,6 @@ public class HomePage extends BasePage {
   @Inject
   public HomePage(WebDriver driver) throws IllegalAccessException {
     super(driver);
-    InternalPageFactory.initElements(driver, this);
+    CustomPageFactory.initElements(driver, this);
   }
 }
