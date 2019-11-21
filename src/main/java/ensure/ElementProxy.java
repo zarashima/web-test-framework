@@ -1,6 +1,5 @@
 package ensure;
 
-import com.google.inject.Inject;
 import modules.DriverModule;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Guice;
