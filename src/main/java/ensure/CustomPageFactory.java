@@ -6,9 +6,9 @@ import org.openqa.selenium.WebElement;
 
 import java.lang.reflect.Field;
 
-public class CustomPage {
+public class CustomPageFactory {
 
-  private CustomPage() {
+  private CustomPageFactory() {
     throw new IllegalArgumentException("Custom Page Factory class");
   }
 
