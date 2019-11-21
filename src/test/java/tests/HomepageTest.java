@@ -15,7 +15,7 @@ public class HomepageTest extends BaseTest {
 
   @Test(description = "Test")
   public void verifyPurchaseText() {
-    browserKeywords.goTo("https://google.com");
+    browserKeywords.goTo("https://another-nodejs-shopping-cart.herokuapp.com/");
     elementKeywords.click(homePage.addToCartButton);
   }
 }
