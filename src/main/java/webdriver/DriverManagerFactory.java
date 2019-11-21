@@ -1,4 +1,4 @@
-package managers;
+package webdriver;
 
 class DriverManagerFactory {
 

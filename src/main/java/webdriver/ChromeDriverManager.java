@@ -1,7 +1,6 @@
-package managers;
+package webdriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import managers.DriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ChromeDriverManager extends DriverManager {
