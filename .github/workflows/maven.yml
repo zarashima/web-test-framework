@@ -1,4 +1,4 @@
-name: Java CI, setup-chromedriver
+name: Java CI
 
 on: [push]
 
@@ -13,7 +13,6 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - uses: actions/checkout@master
     - name: Set up chrome  
       uses: nanasess/setup-chromedriver@v1.0.0
       with: 
