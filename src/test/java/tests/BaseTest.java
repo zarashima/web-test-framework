@@ -1,6 +1,9 @@
 package tests;
 
 import com.aventstack.extentreports.service.ExtentTestManager;
+import com.google.inject.Inject;
+import keywords.Browser;
+import keywords.Element;
 import modules.DriverModule;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -11,15 +14,20 @@ import org.testng.annotations.Guice;
 import utils.ReportUtils;
 import webdriver.DriverFactory;
 
-import static webdriver.DriverFactory.getInstance;
-
 @Guice(modules = {
         DriverModule.class
 })
 
 public class BaseTest {
 
-  WebDriver driver = getInstance().getDriver();
+  @Inject
+  WebDriver driver;
+
+  @Inject
+  Browser browserKeywords;
+
+  @Inject
+  Element elementKeywords;
 
   static {
     System.setProperty("extent.reporter.html.out", ReportUtils.getReportFileLocation());

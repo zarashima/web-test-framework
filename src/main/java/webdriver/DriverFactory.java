@@ -9,13 +9,13 @@ public class DriverFactory {
 
     }
 
-    private static DriverFactory instance = new DriverFactory();
+    private static final DriverFactory instance = new DriverFactory();
 
     public static DriverFactory getInstance() {
         return instance;
     }
 
-    private ThreadLocal<WebDriver> driver = ThreadLocal.withInitial(() -> {
+    private final ThreadLocal<WebDriver> driver = ThreadLocal.withInitial(() -> {
             WebDriverManager.chromedriver().setup();
             return new ChromeDriver();
     });

@@ -6,7 +6,6 @@ import com.google.inject.Scopes;
 import ensure.Ensure;
 import webdriver.*;
 import org.openqa.selenium.WebDriver;
-
 public class DriverModule extends AbstractModule {
 
   @Override
@@ -25,14 +24,16 @@ public class DriverModule extends AbstractModule {
         .annotatedWith(InternetExplorer.class)
         .to(IEDriverManager.class)
         .in(Scopes.SINGLETON);
-
-    bind(Ensure.class).toInstance(new Ensure(DriverFactory.getInstance().getDriver()));
-
   }
 
   @Provides
   public WebDriver getDriver() {
     return DriverFactory.getInstance().getDriver();
+  }
+
+  @Provides
+  public Ensure getEnsure() {
+    return new Ensure(DriverFactory.getInstance().getDriver());
   }
 
 }

@@ -7,8 +7,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.HomePage;
 
-import static com.google.common.truth.Truth.assertThat;
-
 @Listeners({ExtentITestListenerClassAdapter.class, TestListener.class})
 public class HomepageTest extends BaseTest {
 
@@ -17,9 +15,7 @@ public class HomepageTest extends BaseTest {
 
   @Test(description = "Test")
   public void verifyPurchaseText() {
-    driver.get("https://katalon.com");
-    //assertThat(elementKeywords.getText(homePage.addToCartButton)).isEqualTo("Add to cart");
-    //HomePage homePage = new HomePage(driver);
-    homePage.addToCartButton.click();
+    browserKeywords.goTo("https://google.com");
+    elementKeywords.click(homePage.addToCartButton);
   }
 }
