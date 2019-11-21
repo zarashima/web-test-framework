@@ -4,8 +4,13 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import ensure.Ensure;
-import webdriver.*;
+import webdriver.ChromeDriverManager;
+import webdriver.DriverManager;
 import org.openqa.selenium.WebDriver;
+import webdriver.FirefoxDriverManager;
+import webdriver.IEDriverManager;
+import webdriver.DriverFactory;
+
 public class DriverModule extends AbstractModule {
 
   @Override

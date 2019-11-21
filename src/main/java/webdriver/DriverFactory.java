@@ -5,20 +5,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class DriverFactory {
+
+    private static final DriverFactory instance = new DriverFactory();
+
+    private final ThreadLocal<WebDriver> driver = ThreadLocal.withInitial(() -> {
+        WebDriverManager.chromedriver().setup();
+        return new ChromeDriver();
+    });
+
     private DriverFactory() {
 
     }
-
-    private static final DriverFactory instance = new DriverFactory();
 
     public static DriverFactory getInstance() {
         return instance;
     }
 
-    private final ThreadLocal<WebDriver> driver = ThreadLocal.withInitial(() -> {
-            WebDriverManager.chromedriver().setup();
-            return new ChromeDriver();
-    });
 
     public WebDriver getDriver() {
         return driver.get();
