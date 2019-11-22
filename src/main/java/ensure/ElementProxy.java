@@ -1,9 +1,9 @@
 package ensure;
 
-import modules.DriverModule;
+import core.driver.DriverModule;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Guice;
-import webdriver.DriverFactory;
+import core.driver.DriverFactory;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

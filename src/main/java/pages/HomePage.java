@@ -2,9 +2,9 @@ package pages;
 
 import com.google.inject.Inject;
 import ensure.CustomPageFactory;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import core.driver.WebDriverWrapper;
 
 public class HomePage extends BasePage {
 
@@ -12,7 +12,7 @@ public class HomePage extends BasePage {
   public WebElement addToCartButton;
 
   @Inject
-  public HomePage(WebDriver driver) throws IllegalAccessException {
+  public HomePage(WebDriverWrapper driver) throws IllegalAccessException {
     super(driver);
     CustomPageFactory.initElements(driver, this);
   }

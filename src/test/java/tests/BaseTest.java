@@ -2,17 +2,16 @@ package tests;
 
 import com.aventstack.extentreports.service.ExtentTestManager;
 import com.google.inject.Inject;
-import keywords.Browser;
-import keywords.Element;
-import modules.DriverModule;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.ITestContext;
+import core.keywords.BrowserActions;
+import core.keywords.ElementActions;
+import core.driver.DriverModule;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Guice;
 import utils.ReportUtils;
-import webdriver.DriverFactory;
+import core.driver.DriverFactory;
+import core.driver.WebDriverWrapper;
+
+import static utils.StringConstants.SRC_TEST_RESOURCES_HTML_CONFIG_XML;
 
 @Guice(modules = {
         DriverModule.class
@@ -21,28 +20,23 @@ import webdriver.DriverFactory;
 public class BaseTest {
 
   @Inject
-  WebDriver driver;
+  WebDriverWrapper webDriverWrapper;
 
   @Inject
-  Browser browserKeywords;
+  BrowserActions browserActions;
 
   @Inject
-  Element elementKeywords;
+  ElementActions elementActions;
 
   static {
+    System.setProperty("extent.reporter.html.config", SRC_TEST_RESOURCES_HTML_CONFIG_XML);
     System.setProperty("extent.reporter.html.out", ReportUtils.getReportFileLocation());
     System.setProperty("extent.reporter.html.start", "true");
-    System.setProperty("extent.reporter.html.config", "src/test/resources/html-config.xml");
   }
 
-  @BeforeClass
-  public void beforeClass(ITestContext context) {
-    context.setAttribute("Webdriver", driver);
-  }
-
-  @AfterMethod(alwaysRun = true)
+  @AfterMethod()
   public void afterMethod() {
-    ExtentTestManager.getTest().assignCategory(((RemoteWebDriver) driver).getCapabilities().getBrowserName());
+    ExtentTestManager.getTest().assignCategory(webDriverWrapper.getCapabilities().getBrowserName());
     DriverFactory.getInstance().removeDriver();
   }
 }

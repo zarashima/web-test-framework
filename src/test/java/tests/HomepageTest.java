@@ -13,9 +13,9 @@ public class HomepageTest extends BaseTest {
   @Inject
   HomePage homePage;
 
-  @Test(description = "Test")
+  @Test(description = "Sample Test")
   public void verifyPurchaseText() {
-    browserKeywords.goTo("https://google.com");
-    elementKeywords.click(homePage.addToCartButton);
+    browserActions.goTo("https://katalon.com");
+    elementActions.click(homePage.addToCartButton);
   }
 }

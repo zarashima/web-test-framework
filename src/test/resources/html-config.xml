@@ -29,8 +29,7 @@
     <scripts>
       <![CDATA[
                 $(document).ready(function() {
-                    $(\"#slide-out li > a[view='dashboard-view']\").click();
-
+                    $("#slide-out li > a[view='dashboard-view']").click();
                 });
             ]]>
     </scripts>
