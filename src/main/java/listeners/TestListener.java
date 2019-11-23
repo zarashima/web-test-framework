@@ -1,5 +1,5 @@
 package listeners;
-
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.service.ExtentTestManager;
 import com.google.inject.Inject;
 import org.apache.commons.io.FileUtils;
@@ -13,18 +13,22 @@ import core.driver.WebDriverWrapper;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static core.log.Log.log;
-import static core.log.Type.*;
+import static core.log.Type.ERROR;
+import static core.log.Type.FAIL;
+import static core.log.Type.INFO;
+import static core.log.Type.SKIPPED;
 
 public class TestListener implements ITestListener {
 
   @Inject
-  WebDriverWrapper webDriverWrapper;
+  private WebDriverWrapper webDriverWrapper;
 
   @Override
   public synchronized void onTestStart(ITestResult result) {
-    log(INFO,"Starting test: " + result.getTestClass().getRealClass().getSimpleName());
+    log(INFO, "Starting test: " + result.getTestClass().getRealClass().getSimpleName());
   }
 
   @Override
@@ -35,6 +39,8 @@ public class TestListener implements ITestListener {
   @Override
   public synchronized void onTestFailure(ITestResult result) {
     log(FAIL, "Test is failed");
+    ITestContext context = result.getTestContext();
+    webDriverWrapper = (WebDriverWrapper) context.getAttribute("WebDriver");
     try {
       TakesScreenshot screenshot = webDriverWrapper;
       String storedImg = String.format("%s.png", System.getProperty("user.dir") + File.separator + "failed-screenshots" + File.separator + createImageName(result));
@@ -62,7 +68,7 @@ public class TestListener implements ITestListener {
 
   @Override
   public synchronized void onStart(ITestContext context) {
-    log(INFO,"Start tests");
+    log(INFO,"Starting tests");
   }
 
   @Override
@@ -71,7 +77,8 @@ public class TestListener implements ITestListener {
   }
 
   private String createImageName(ITestResult result) {
+    DateTimeFormatter inFormat = DateTimeFormatter.ofPattern("dd_MM_yyyy-HH_mm_ss");
     return result.getTestClass().getRealClass().getSimpleName()
-        + "_" + result.getName() + "_" + LocalDateTime.now();
+        + "_" + result.getName() + "_" + LocalDateTime.now().format(inFormat);
   }
 }
