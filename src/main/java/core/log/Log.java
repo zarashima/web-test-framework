@@ -1,17 +1,22 @@
 package core.log;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Log {
 
-    private static final Logger LOGGER = Logger.getLogger(Log.class.getName());
+    private Log() {
+
+    }
+
+    private static final Logger LOGGER = LogManager.getLogger(Log.class.getName());
 
     public static void startLog(String testClassName) {
-        LOGGER.info("Starting test: " + testClassName);
+        LOGGER.info("Starting test: {}", testClassName);
     }
 
     public static void endLog(String testClassName) {
-        LOGGER.info("Ending test: " + testClassName);
+        LOGGER.info("Ending test: {}", testClassName);
     }
 
     public static void log(Type type, String message) {
