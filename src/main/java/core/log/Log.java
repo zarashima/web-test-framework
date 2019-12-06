@@ -1,7 +1,5 @@
 package core.log;
 
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.service.ExtentTestManager;
 import org.apache.log4j.Logger;
 
 public class Log {
@@ -20,7 +18,7 @@ public class Log {
         switch (type) {
             case INFO:
                 LOGGER.info(message);
-                ExtentTestManager.getTest().log(Status.INFO, message);
+               // ExtentTestManager.getTest().log(Status.INFO, message);
                 break;
             case FAIL:
                 LOGGER.error(message);
