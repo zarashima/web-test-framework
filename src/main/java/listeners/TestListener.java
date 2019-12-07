@@ -57,11 +57,12 @@ public class TestListener implements ITestListener {
 
   @Override
   public synchronized void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-
+    throw new UnsupportedOperationException();
   }
 
   @Override
   public synchronized void onTestFailedWithTimeout(ITestResult result) {
+    throw new UnsupportedOperationException();
   }
 
   @Override
