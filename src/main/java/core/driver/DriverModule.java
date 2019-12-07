@@ -1,5 +1,6 @@
 package core.driver;
 
+import com.aventstack.extentreports.service.ExtentTestManager;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import listeners.EventsListener;
@@ -10,6 +11,11 @@ public class DriverModule extends AbstractModule {
   @Provides
   public WebDriver getDriver() {
     return DriverFactory.getInstance().getDriver();
+  }
+
+  @Provides
+  public ExtentTestManager getExtentTestManager() {
+    return new ExtentTestManager();
   }
 
   @Provides

@@ -1,7 +1,8 @@
 package listeners;
-
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.service.ExtentTestManager;
 import com.google.inject.Inject;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
@@ -9,23 +10,25 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import core.driver.WebDriverWrapper;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Base64;
+import java.time.format.DateTimeFormatter;
 
 import static core.log.Log.log;
-import static core.log.Type.*;
+import static core.log.Type.ERROR;
+import static core.log.Type.FAIL;
+import static core.log.Type.INFO;
+import static core.log.Type.SKIPPED;
 
 public class TestListener implements ITestListener {
 
   @Inject
-  WebDriverWrapper webDriverWrapper;
+  private WebDriverWrapper webDriverWrapper;
 
   @Override
   public synchronized void onTestStart(ITestResult result) {
-    log(INFO,"Starting test: " + result.getTestClass().getRealClass().getSimpleName());
+    log(INFO, "Starting test: " + result.getTestClass().getRealClass().getSimpleName());
   }
 
   @Override
@@ -35,16 +38,15 @@ public class TestListener implements ITestListener {
 
   @Override
   public synchronized void onTestFailure(ITestResult result) {
-    log(FAIL, "Failed tests");
+    log(FAIL, "Test is failed");
+    ITestContext context = result.getTestContext();
+    webDriverWrapper = (WebDriverWrapper) context.getAttribute("WebDriver");
     try {
-      TakesScreenshot screenshot = (TakesScreenshot) result.getTestContext().getAttribute("WebDriver");
-      String base64Src = screenshot.getScreenshotAs(OutputType.BASE64);
-      byte[] base64Decoded = Base64.getDecoder().decode(base64Src);
+      TakesScreenshot screenshot = webDriverWrapper;
       String storedImg = String.format("%s.png", System.getProperty("user.dir") + File.separator + "failed-screenshots" + File.separator + createImageName(result));
-      File targetFile = new File(storedImg);
-      BufferedImage image = ImageIO.read(new ByteArrayInputStream(base64Decoded));
-      ImageIO.write(image, "png", targetFile);
-      ExtentTestManager.getTest(result).addScreenCaptureFromPath(targetFile.getAbsolutePath());
+      File capturedImg = screenshot.getScreenshotAs(OutputType.FILE);
+      FileUtils.copyFile(capturedImg, new File(storedImg));
+      ExtentTestManager.getTest(result).addScreenCaptureFromPath(storedImg);
     } catch (IOException e) {
       log(ERROR, e.getMessage());
     }
@@ -52,22 +54,21 @@ public class TestListener implements ITestListener {
 
   @Override
   public synchronized void onTestSkipped(ITestResult result) {
-    log(SKIPPED, "Skipped tests");
+    log(SKIPPED, "Test is skipped");
   }
 
   @Override
   public synchronized void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-    throw new UnsupportedOperationException();
+
   }
 
   @Override
   public synchronized void onTestFailedWithTimeout(ITestResult result) {
-    throw new UnsupportedOperationException();
   }
 
   @Override
   public synchronized void onStart(ITestContext context) {
-    log(INFO,"Start tests");
+    log(INFO,"Starting tests");
   }
 
   @Override
@@ -76,7 +77,8 @@ public class TestListener implements ITestListener {
   }
 
   private String createImageName(ITestResult result) {
+    DateTimeFormatter inFormat = DateTimeFormatter.ofPattern("dd_MM_yyyy-HH_mm_ss");
     return result.getTestClass().getRealClass().getSimpleName()
-        + "_" + result.getName() + "_" + LocalDateTime.now();
+        + "_" + result.getName() + "_" + LocalDateTime.now().format(inFormat);
   }
 }
