@@ -1,5 +1,4 @@
 package listeners;
-import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.service.ExtentTestManager;
 import com.google.inject.Inject;
 import org.apache.commons.io.FileUtils;
