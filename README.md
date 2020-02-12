@@ -7,6 +7,7 @@
 * Dependences are managed by Guice (Done)
 * Store executed browser information in the report (Done)
 * Ensure mechanism (In progress)
+* Parallel executions (Not Started)
 * Support BDD (Not started)
 * Support API testing (Not started)
 
