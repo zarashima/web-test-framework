@@ -1,22 +1,28 @@
 package webdriver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import utils.ExecutionUtils;
 
 public class DriverFactory {
 
     private static final DriverFactory instance = new DriverFactory();
 
     private final ThreadLocal<WebDriver> driver = ThreadLocal.withInitial(() -> {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--no-sandbox");
-        chromeOptions.addArguments("--headless");
-        chromeOptions.addArguments("--disable-dev-shm-usage");
-        return new ChromeDriver(chromeOptions);
+        DriverManager driverManager;
+        switch (ExecutionUtils.getParameter("browserName")) {
+            case "firefox":
+                driverManager = DriverManagerFactory.getManager(DriverType.FIREFOX);
+                break;
+            case "chrome":
+                driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
+                break;
+            case "IE":
+                driverManager = DriverManagerFactory.getManager(DriverType.IE);
+                break;
+            default:
+                throw new IllegalArgumentException("Not supported browser");
+        }
+        return driverManager.getDriver();
     });
 
     private DriverFactory() {
