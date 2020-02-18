@@ -2,12 +2,12 @@
 [![Build Status](https://travis-ci.com/zarashima/java-test-framework.svg?branch=master)](https://travis-ci.com/zarashima/java-test-framework)
 ![Build Status](https://github.com/zarashima/java-test-framework/workflows/Build%20verify/badge.svg)
 
-## Yet another Java automation framework
+## Yet another Java automation skeleton framework
 
 ### Roadmap
 * Dependences are managed by Guice (Done)
 * Store executed browser information in the report (Done)
-* Ensure mechanism (In progress)
+* Ensure mechanism (Done)
 * Parallel executions (Not Started)
 * Support BDD (Not started)
 * Support API testing (Not started)
