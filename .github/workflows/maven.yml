@@ -13,6 +13,15 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    
+    - name: cache m2 repository
+    - uses: actions/cache@v1
+      with: 
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+       
     - uses: actions/checkout@master
     - uses: nanasess/setup-chromedriver@master
     - run: |
@@ -22,4 +31,3 @@ jobs:
         
     - name: maven test on Chrome
       run: mvn clean test -DbrowserName=chrome
-
