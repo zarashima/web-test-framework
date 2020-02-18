@@ -16,10 +16,7 @@ jobs:
     - name: cache m2 repository
       uses: actions/cache@v1.1.2
       with: 
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+          path: ~/.m2/repository       
             
     - name: setup chromedriver   
       uses: nanasess/setup-chromedriver@master
