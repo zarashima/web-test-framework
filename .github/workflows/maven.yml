@@ -15,8 +15,6 @@ jobs:
         java-version: 1.8
     - uses: actions/checkout@master
     - uses: nanasess/setup-chromedriver@v1.0.0
-      with: 
-        chromedriver-version: '77.0.3865.40'
     - run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
