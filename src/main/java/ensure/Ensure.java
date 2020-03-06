@@ -10,6 +10,7 @@ public class Ensure {
     @Inject
     private WebDriver driver;
 
+    @Inject
     private final Wait wait;
 
     private WebElement element;

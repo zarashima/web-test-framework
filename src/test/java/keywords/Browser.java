@@ -12,6 +12,7 @@ public class Browser {
   @Inject
   WebDriver driver;
 
+  @Inject
   Wait wait;
 
   public void goTo(String url) {
