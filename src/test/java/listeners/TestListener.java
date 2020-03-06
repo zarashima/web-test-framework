@@ -69,9 +69,4 @@ public class TestListener implements ITestListener {
     //extent.flush();
   }
 
-  private String createImageName(ITestResult result) {
-    return result.getTestClass().getRealClass().getSimpleName()
-        + "_"
-        + result.getName();
-  }
 }
