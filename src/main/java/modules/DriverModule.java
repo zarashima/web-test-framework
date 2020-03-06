@@ -4,6 +4,8 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import ensure.Ensure;
+import ensure.Wait;
+import org.openqa.selenium.JavascriptExecutor;
 import webdriver.ChromeDriverManager;
 import webdriver.DriverManager;
 import org.openqa.selenium.WebDriver;
@@ -39,6 +41,16 @@ public class DriverModule extends AbstractModule {
   @Provides
   public Ensure getEnsure() {
     return new Ensure(DriverFactory.getInstance().getDriver());
+  }
+
+  @Provides
+  public Wait getWait() {
+    return new Wait(DriverFactory.getInstance().getDriver());
+  }
+
+  @Provides
+  public JavascriptExecutor getJsExecutor() {
+    return (JavascriptExecutor) DriverFactory.getInstance().getDriver();
   }
 
 }

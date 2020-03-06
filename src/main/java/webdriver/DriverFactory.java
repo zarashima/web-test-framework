@@ -33,7 +33,6 @@ public class DriverFactory {
         return instance;
     }
 
-
     public WebDriver getDriver() {
         return driver.get();
     }

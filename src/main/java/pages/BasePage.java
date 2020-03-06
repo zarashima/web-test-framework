@@ -7,12 +7,8 @@ import utils.PropertyUtils;
 
 class BasePage {
 
-  private final WebDriver driver;
-  private final WebDriverWait wait;
-
   @Inject
   BasePage(WebDriver driver) {
-    this.wait = new WebDriverWait(driver, PropertyUtils.getInstance().getWebTimeout());
-    this.driver = driver;
+    WebDriverWait wait = new WebDriverWait(driver, PropertyUtils.getInstance().getWebTimeout());
   }
 }

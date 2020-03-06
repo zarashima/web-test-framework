@@ -1,21 +1,22 @@
 package keywords;
 
 import com.google.inject.Inject;
+import ensure.Wait;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Set;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Browser {
 
   @Inject
   WebDriver driver;
 
+  Wait wait;
+
   public void goTo(String url) {
-    checkNotNull(url, "URL address must not be NULL");
     driver.get(url);
+    wait.waitForPageLoad();
   }
 
   public Set<Cookie> getCookies() {
