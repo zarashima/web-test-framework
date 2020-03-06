@@ -2,13 +2,7 @@ package listeners;
 
 import com.aventstack.extentreports.service.ExtentTestManager;
 import com.google.inject.Inject;
-
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.util.Base64;
-
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +10,9 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.util.Base64;
 
 public class TestListener implements ITestListener {
 
@@ -37,14 +33,12 @@ public class TestListener implements ITestListener {
     ITestContext context = result.getTestContext();
     driver = (WebDriver) context.getAttribute("Webdriver");
     try {
+      String base64StringOfScreenshots;
       TakesScreenshot screenshot = (TakesScreenshot) driver;
-      String base64Src = screenshot.getScreenshotAs(OutputType.BASE64);
-      byte[] base64Decoded = Base64.getDecoder().decode(base64Src);
-      String storedImg = String.format("%s.png", System.getProperty("user.dir") + File.separator + "failed-screenshots" + File.separator + createImageName(result));
-      File targetFile = new File(storedImg);
-      BufferedImage image = ImageIO.read(new ByteArrayInputStream(base64Decoded));
-      ImageIO.write(image, "png", targetFile);
-      ExtentTestManager.getTest(result).addScreenCaptureFromPath(targetFile.getAbsolutePath());
+      File src = screenshot.getScreenshotAs(OutputType.FILE);
+      byte[] fileContent = FileUtils.readFileToByteArray(src);
+      base64StringOfScreenshots = "data:image/png;base64,"+Base64.getEncoder().encodeToString(fileContent);
+      ExtentTestManager.getTest(result).addScreenCaptureFromBase64String(base64StringOfScreenshots);
     } catch (IOException e) {
       e.printStackTrace();
     }
