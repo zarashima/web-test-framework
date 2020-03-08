@@ -1,5 +1,6 @@
 package tests;
 
+import capabilities.AndroidCapabilities;
 import com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter;
 import com.google.inject.Inject;
 import listeners.TestListener;

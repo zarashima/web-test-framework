@@ -1,0 +1,7 @@
+capabilities:
+  android:
+    automationName: "uiAutomator2"
+    applicationPath: "./app/api_demo_app.apk"
+  iOS:
+    automationName: "uiAutomator3"
+    applicationPath: "./app/demo.ipa"
