@@ -1,6 +1,5 @@
 package tests;
 
-import capabilities.AndroidCapabilities;
 import com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter;
 import com.google.inject.Inject;
 import listeners.TestListener;
@@ -15,8 +14,8 @@ public class HomepageTest extends BaseTest {
   HomePage homePage;
 
   @Test(description = "Test")
-  public void verifyPurchaseText() {
-    browserKeywords.goTo("https://google.com/");
-    elementKeywords.click(homePage.addToCartButton);
+  public void testNavigation() {
+    browserKeywords.goTo("https://another-nodejs-shopping-cart.herokuapp.com/");
+    verificationKeywords.verifyElementPresent(homePage.addToCartButton);
   }
 }

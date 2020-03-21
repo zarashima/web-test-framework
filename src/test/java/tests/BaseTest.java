@@ -4,6 +4,7 @@ import com.aventstack.extentreports.service.ExtentTestManager;
 import com.google.inject.Inject;
 import keywords.Browser;
 import keywords.Element;
+import keywords.Verification;
 import modules.DriverModule;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -29,6 +30,9 @@ public class BaseTest {
   @Inject
   Element elementKeywords;
 
+  @Inject
+  Verification verificationKeywords;
+
   static {
     System.setProperty("extent.reporter.html.out", ReportUtils.getReportFileLocation());
     System.setProperty("extent.reporter.html.start", "true");
@@ -37,7 +41,7 @@ public class BaseTest {
 
   @BeforeClass
   public void beforeClass(ITestContext context) {
-    context.setAttribute("Webdriver", driver);
+    context.setAttribute("driver", driver);
   }
 
   @AfterMethod(alwaysRun = true)

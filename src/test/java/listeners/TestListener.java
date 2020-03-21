@@ -13,6 +13,7 @@ import org.testng.ITestResult;
 import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.Objects;
 
 public class TestListener implements ITestListener {
 
@@ -30,8 +31,8 @@ public class TestListener implements ITestListener {
 
   @Override
   public synchronized void onTestFailure(ITestResult result) {
-    ITestContext context = result.getTestContext();
-    driver = (WebDriver) context.getAttribute("Webdriver");
+    ITestContext context = Objects.requireNonNull(result).getTestContext();
+    driver = (WebDriver) context.getAttribute("driver");
     try {
       String base64StringOfScreenshots;
       TakesScreenshot screenshot = (TakesScreenshot) driver;
@@ -46,7 +47,6 @@ public class TestListener implements ITestListener {
 
   @Override
   public synchronized void onTestSkipped(ITestResult result) {
-
   }
 
   @Override
@@ -68,5 +68,4 @@ public class TestListener implements ITestListener {
   public synchronized void onFinish(ITestContext context) {
     //extent.flush();
   }
-
 }
