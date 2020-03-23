@@ -5,6 +5,8 @@ import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import ensure.Ensure;
 import ensure.Wait;
+import net.lightbody.bmp.BrowserMobProxy;
+import net.lightbody.bmp.BrowserMobProxyServer;
 import org.openqa.selenium.JavascriptExecutor;
 import webdriver.ChromeDriverManager;
 import webdriver.DriverManager;
@@ -46,6 +48,11 @@ public class DriverModule extends AbstractModule {
   @Provides
   public Wait getWait() {
     return new Wait(DriverFactory.getInstance().getDriver());
+  }
+
+  @Provides
+  public BrowserMobProxy getBrowserModProxy() {
+    return new BrowserMobProxyServer();
   }
 
   @Provides
