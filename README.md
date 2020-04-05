@@ -2,7 +2,9 @@
 [![Build Status](https://travis-ci.com/zarashima/java-test-framework.svg?branch=master)](https://travis-ci.com/zarashima/java-test-framework)
 ![Build Status](https://github.com/zarashima/java-test-framework/workflows/Build%20verify/badge.svg)
 
-## Yet another Java automation skeleton framework
+### Framework Architechture
+![Framework Architechture](https://github.com/zarashima/java-test-framework/blob/master/Framework-Architecture.png)
+
 
 ### Roadmap
 * Dependences are managed by Guice (Done)
@@ -11,7 +13,3 @@
 * Parallel executions (Not Started)
 * Support BDD (Not started)
 * Support API testing (Not started)
-
-### Pre-requisites
-* Maven
-* Java 8+
