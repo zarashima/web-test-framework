@@ -5,7 +5,9 @@ import utils.FileUtils;
 
 public class DesiredCapabilitiesManager {
 
-  protected static Map<String, DesiredCapabilities> loadDesiredCapabilities() {
-    return FileUtils.loadDesiredCapabilitiesFile();
+	private DesiredCapabilitiesManager() {}
+
+	protected static Map<String, DesiredCapabilities> loadDesiredCapabilities() {
+		return FileUtils.loadDesiredCapabilitiesFile();
   }
 }
