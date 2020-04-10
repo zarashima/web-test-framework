@@ -1,9 +1,11 @@
 language: java
 addons:
   chrome: stable
+  firefox: stable
 cache:
   directories:
     - .autoconf
     - $HOME/.m2
 script:
   - mvn clean test -DbrowserName=chrome
+  - mvn clean test -DbrowserName=firefox
