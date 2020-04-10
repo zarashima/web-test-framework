@@ -11,7 +11,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
@@ -30,3 +29,4 @@ factory.iml
 /target/
 /failed-screenshots/
 /test-output/
+/target/
