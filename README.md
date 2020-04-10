@@ -7,9 +7,35 @@
 
 
 ### Roadmap
-* Dependences are managed by Guice (Done)
+* Dependencies injection by Guice (Done)
 * Store executed browser information in the report (Done)
 * Ensure mechanism (Done)
-* Parallel executions (Not Started)
-* Support BDD (Not started)
-* Support API testing (Not started)
+
+### Introduction
+A simple automated testing framework for Web platform. Support Chrome, Firefox and IE
+
+### Technologies
+* Maven
+* TestNG
+* ExtentReport
+
+### Features
+* Dependencies injection using Guice
+* Ensure mechanism
+* Thread-safe driver instances
+* Auto download webdrivers (using WebDriverManager)
+
+### Usage
+Execute maven command and pass in the browser's name. Example:
+```bash
+# Chrome
+./mvnw clean test -DbrowserName=chrome
+
+# Firefox
+./mvnw clean test -DbrowserName=firefox
+
+# IE
+./mvnw clean test -DbrowserName=ie
+```
+
+### Extension
