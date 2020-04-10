@@ -1,9 +1,14 @@
 language: java
+dist: xenial
+services:
+  - xvfb
 addons:
   chrome: stable
+  firefox: latest
 cache:
   directories:
     - .autoconf
     - $HOME/.m2
 script:
   - mvn clean test -DbrowserName=chrome
+  - mvn clean test -DbrowserName=firefox
