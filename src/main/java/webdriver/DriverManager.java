@@ -1,16 +1,17 @@
 package webdriver;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public abstract class DriverManager {
 
   protected WebDriver driver;
 
-  protected abstract void createDriver();
+  protected abstract void createDriver(DesiredCapabilities desiredCapabilities);
 
-  public WebDriver getDriver() {
+  public WebDriver getDriver(DesiredCapabilities desiredCapabilities) {
     if (null == driver) {
-      createDriver();
+      createDriver(desiredCapabilities);
     }
     return driver;
   }

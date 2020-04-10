@@ -1,6 +1,7 @@
 package webdriver;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import utils.ExecutionUtils;
 
 public class DriverFactory {
@@ -9,6 +10,7 @@ public class DriverFactory {
 
     private final ThreadLocal<WebDriver> driver = ThreadLocal.withInitial(() -> {
         DriverManager driverManager;
+		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         switch (ExecutionUtils.getParameter("browserName")) {
             case "firefox":
                 driverManager = DriverManagerFactory.getManager(DriverType.FIREFOX);
@@ -22,7 +24,7 @@ public class DriverFactory {
             default:
                 throw new IllegalArgumentException("Not supported browser");
         }
-        return driverManager.getDriver();
+        return driverManager.getDriver(desiredCapabilities);
     });
 
     private DriverFactory() {
