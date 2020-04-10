@@ -1,5 +1,6 @@
 package utils;
 
+import helper.StringConstants;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -37,7 +38,7 @@ public class ServicesUtils {
     assert response != null;
     Objects.requireNonNull(response).then().log().all();
     if (verifyStatusCode) {
-      response.then().statusCode(200);
+      response.then().statusCode(StringConstants.SUCCESS_RESPONDE_CODE);
     }
     return response;
   }

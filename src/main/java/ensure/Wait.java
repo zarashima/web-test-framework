@@ -1,13 +1,15 @@
 package ensure;
 
 import com.google.inject.Inject;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import helper.StringConstants;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.Objects;
 
 public class Wait {
 
@@ -18,7 +20,7 @@ public class Wait {
 
     @Inject
     public Wait(WebDriver driver) {
-        this.wait = new WebDriverWait(driver, 30);
+        this.wait = new WebDriverWait(driver, StringConstants.TIMEOUT);
         this.driver = driver;
     }
 
@@ -27,14 +29,8 @@ public class Wait {
     }
 
     public boolean waitForPageLoad() {
-        return wait.until((ExpectedCondition<Boolean>) driver -> {
-            if (driver != null) {
-                return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-            }
-            else {
-                throw new NullPointerException("NPE");
-            }
-        });
+        return wait.until((ExpectedCondition<Boolean>) driver -> (
+        		(JavascriptExecutor) Objects.requireNonNull(driver)).executeScript("return document.readyState").equals("complete"));
     }
 
 }

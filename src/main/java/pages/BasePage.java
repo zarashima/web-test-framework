@@ -9,6 +9,5 @@ class BasePage {
 
   @Inject
   BasePage(WebDriver driver) {
-    WebDriverWait wait = new WebDriverWait(driver, PropertyUtils.getInstance().getWebTimeout());
   }
 }
