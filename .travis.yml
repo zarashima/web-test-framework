@@ -1,7 +1,7 @@
 language: java
 addons:
   chrome: stable
-  firefox: stable
+  firefox: latest
 cache:
   directories:
     - .autoconf
