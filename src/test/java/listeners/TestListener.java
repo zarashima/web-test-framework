@@ -22,11 +22,13 @@ public class TestListener implements ITestListener {
 
   @Override
   public synchronized void onTestStart(ITestResult result) {
+  	throw new UnsupportedOperationException();
+
   }
 
   @Override
   public synchronized void onTestSuccess(ITestResult result) {
-
+	  throw new UnsupportedOperationException();
   }
 
   @Override
@@ -47,25 +49,26 @@ public class TestListener implements ITestListener {
 
   @Override
   public synchronized void onTestSkipped(ITestResult result) {
+	  throw new UnsupportedOperationException();
   }
 
   @Override
   public synchronized void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-
+	  throw new UnsupportedOperationException();
   }
 
   @Override
   public synchronized void onTestFailedWithTimeout(ITestResult result) {
-
+	  throw new UnsupportedOperationException();
   }
 
   @Override
   public synchronized void onStart(ITestContext context) {
-
+	  throw new UnsupportedOperationException();
   }
 
   @Override
   public synchronized void onFinish(ITestContext context) {
-    //extent.flush();
+	  throw new UnsupportedOperationException();
   }
 }
