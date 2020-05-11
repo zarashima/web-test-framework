@@ -31,4 +31,4 @@ jobs:
 
     - name: maven test
       run: |
-        mvn clean test -DtestSuite=BasicTestsSuite -DbrowserName=chrome
+        mvn clean test -DbrowserName=chrome
