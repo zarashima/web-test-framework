@@ -6,8 +6,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class FirefoxDriverManager extends DriverManager {
 
-  public void createDriver(DesiredCapabilities desiredCapabilities) {
-    WebDriverManager.firefoxdriver().setup();
-    driver = new FirefoxDriver();
-  }
+	public void createDriver(DesiredCapabilities desiredCapabilities) {
+		WebDriverManager.firefoxdriver().setup();
+		driver = new FirefoxDriver();
+	}
 }

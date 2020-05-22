@@ -8,23 +8,23 @@ import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 
 class HighlighterEventListener extends AbstractWebDriverEventListener {
 
-  private WebElement lastElement;
+	private WebElement lastElement;
 
-  @Override
-  public void beforeFindBy(By by, WebElement element, WebDriver driver) {
-    System.out.print("before find by");
-    if (lastElement != null) {
-      ((JavascriptExecutor) driver).executeScript(
-          "arguments[0].style.border='none'", lastElement);
-    }
-    lastElement = null;
-  }
+	@Override
+	public void beforeFindBy(By by, WebElement element, WebDriver driver) {
+		System.out.print("before find by");
+		if (lastElement != null) {
+			((JavascriptExecutor) driver).executeScript(
+					"arguments[0].style.border='none'", lastElement);
+		}
+		lastElement = null;
+	}
 
-  @Override
-  public void afterFindBy(By by, WebElement element, WebDriver driver) {
-    lastElement = element;
-    ((JavascriptExecutor) driver).executeScript(
-        "arguments[0].style.border='pink'", lastElement);
-    System.out.print("after find by");
-  }
+	@Override
+	public void afterFindBy(By by, WebElement element, WebDriver driver) {
+		lastElement = element;
+		((JavascriptExecutor) driver).executeScript(
+				"arguments[0].style.border='pink'", lastElement);
+		System.out.print("after find by");
+	}
 }

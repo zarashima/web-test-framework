@@ -1,9 +1,13 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite1" verbose="1" >
-    <test name="Nopackage" >
-        <classes>
-            <class name="tests.HomepageTest" />
-        </classes>
-    </test>
+<suite name="Test Suite" verbose="5">
+	<listeners>
+		<listener class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter"></listener>
+		<listener class-name="listeners.TestListener"></listener>
+	</listeners>
+	<test name="Login">
+		<classes>
+			<class name="tests.SignInTest"/>
+		</classes>
+	</test>
 </suite>

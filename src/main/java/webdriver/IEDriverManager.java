@@ -6,8 +6,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class IEDriverManager extends DriverManager {
 
-  public void createDriver(DesiredCapabilities desiredCapabilities) {
-    WebDriverManager.iedriver().setup();
-    driver = new InternetExplorerDriver();
-  }
+	public void createDriver(DesiredCapabilities desiredCapabilities) {
+		WebDriverManager.iedriver().setup();
+		driver = new InternetExplorerDriver();
+	}
 }

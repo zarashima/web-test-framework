@@ -6,41 +6,41 @@ import utils.ExecutionUtils;
 
 public class DriverFactory {
 
-    private static final DriverFactory instance = new DriverFactory();
+	private static final DriverFactory instance = new DriverFactory();
 
-    private final ThreadLocal<WebDriver> driver = ThreadLocal.withInitial(() -> {
-        DriverManager driverManager;
+	private final ThreadLocal<WebDriver> driver = ThreadLocal.withInitial(() -> {
+		DriverManager driverManager;
 		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        switch (ExecutionUtils.getParameter("browserName")) {
-            case "firefox":
-                driverManager = DriverManagerFactory.getManager(DriverType.FIREFOX);
-                break;
-            case "chrome":
-                driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
-                break;
-            case "IE":
-                driverManager = DriverManagerFactory.getManager(DriverType.IE);
-                break;
-            default:
-                throw new IllegalArgumentException("Not supported browser");
-        }
-        return driverManager.getDriver(desiredCapabilities);
-    });
+		switch (ExecutionUtils.getParameter("browserName")) {
+			case "firefox":
+				driverManager = DriverManagerFactory.getManager(DriverType.FIREFOX);
+				break;
+			case "chrome":
+				driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
+				break;
+			case "IE":
+				driverManager = DriverManagerFactory.getManager(DriverType.IE);
+				break;
+			default:
+				throw new IllegalArgumentException("Not supported browser");
+		}
+		return driverManager.getDriver(desiredCapabilities);
+	});
 
-    private DriverFactory() {
+	private DriverFactory() {
 
-    }
+	}
 
-    public static DriverFactory getInstance() {
-        return instance;
-    }
+	public static DriverFactory getInstance() {
+		return instance;
+	}
 
-    public WebDriver getDriver() {
-        return driver.get();
-    }
+	public WebDriver getDriver() {
+		return driver.get();
+	}
 
-    public void removeDriver() {
-        driver.get().quit();
-        driver.remove();
-    }
+	public void removeDriver() {
+		driver.get().quit();
+		driver.remove();
+	}
 }
