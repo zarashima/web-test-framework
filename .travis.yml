@@ -9,6 +9,8 @@ cache:
   directories:
     - .autoconf
     - $HOME/.m2
+env:
+  - RUNWHERE=pipeline
 script:
   - mvn clean test -DbrowserName=chrome
   - mvn clean test -DbrowserName=firefox
