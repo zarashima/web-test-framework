@@ -22,7 +22,7 @@ public class ChromeDriverManager extends DriverManager {
 				driver = new ChromeDriver(desiredCapabilities);
 				break;
 			case "container":
-				String seleniumHubUrl = "http://localhost:4444/wd/hub";
+				String seleniumHubUrl = System.getenv("HUB_HOST") == null ? "http://localhost:4444/wd/hub" : System.getenv("HUB_HOST");
 				chromeOptions.addArguments("--whitelisted-ips");
 				chromeOptions.addArguments("--no-sandbox");
 				try {
