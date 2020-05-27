@@ -12,7 +12,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
 import pages.HomePage;
 import pages.SignInPage;
-import utils.PropertyUtils;
+import utils.ExecutionUtils;
 import utils.ReportUtils;
 import webdriver.DriverFactory;
 
@@ -60,7 +60,7 @@ public class BaseTest {
 		driver = DriverFactory.getInstance().getDriver();
 	}
 
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void afterMethod() {
 		String browserDetails = ((RemoteWebDriver) driver).getCapabilities().getBrowserName() + "_" +
 				((RemoteWebDriver) driver).getCapabilities().getVersion();

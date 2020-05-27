@@ -25,3 +25,15 @@ services:
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
+
+  signin_test:
+    image: vinh/selenium-docker
+    depends_on:
+      - chrome
+      - firefox
+    environment:
+      - MODULE=testng.xml
+      - BROWSER=chrome
+      - HUB_HOST=selenium-hub
+    volumes:
+      - /Users/vinh.nguyen/Desktop/docker/selenium-hub/reports:/TestReport
