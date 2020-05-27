@@ -5,10 +5,10 @@ pipeline {
 			sh 'docker build -t=vinh/selenium-docker .'
 		}
 		stage('Run tests') {
-			sh 'docker compose up -d'
+			sh 'docker-compose up -d'
 		}
 		stage('Clean up') {
-			sh 'docker compose down'
+			sh 'docker-compose down'
 		}
 	}
 }
