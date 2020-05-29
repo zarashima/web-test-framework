@@ -10,6 +10,7 @@ public class PropertyUtils {
 	private final Properties props = new Properties();
 	private Integer webTimeout;
 	private String autHomePage;
+	private boolean isKibanaIntegration;
 
 	public static PropertyUtils getInstance() {
 		if (instance == null) {
@@ -28,13 +29,19 @@ public class PropertyUtils {
 		}
 		webTimeout = Integer.valueOf(props.getProperty("web.timeout"));
 		autHomePage = props.getProperty("aut.homepage");
+		isKibanaIntegration = Boolean.parseBoolean(props.getProperty("kibana.intergration"));
 	}
 
 	public Integer getWebTimeout() {
 		return webTimeout;
 	}
+
 	public String getAutHomepage() {
 		return autHomePage;
+	}
+
+	public boolean getKibanaIntegration() {
+		return isKibanaIntegration;
 	}
 
 }

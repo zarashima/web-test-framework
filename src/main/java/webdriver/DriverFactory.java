@@ -8,6 +8,10 @@ public class DriverFactory {
 
 	private static final DriverFactory instance = new DriverFactory();
 
+	private DriverFactory() {
+
+	}
+
 	private final ThreadLocal<WebDriver> driver = ThreadLocal.withInitial(() -> {
 		DriverManager driverManager;
 		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
@@ -18,18 +22,11 @@ public class DriverFactory {
 			case "chrome":
 				driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
 				break;
-			case "IE":
-				driverManager = DriverManagerFactory.getManager(DriverType.IE);
-				break;
 			default:
 				throw new IllegalArgumentException("Not supported browser");
 		}
 		return driverManager.getDriver(desiredCapabilities);
 	});
-
-	private DriverFactory() {
-
-	}
 
 	public static DriverFactory getInstance() {
 		return instance;

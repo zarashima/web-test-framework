@@ -43,7 +43,7 @@ public class Element {
 
 	public void scrollIntoView(WebElement element) {
 		LogUtils.info("Scroll into view of element: " + WebElementUtils.getElementXpathInfo(element));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block:'center', inline: 'center'});", element);
 		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, -250);");
 	}
 

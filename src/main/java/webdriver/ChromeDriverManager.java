@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import utils.ExecutionUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,11 +23,10 @@ public class ChromeDriverManager extends DriverManager {
 				driver = new ChromeDriver(desiredCapabilities);
 				break;
 			case "container":
-				String seleniumHubUrl = System.getenv("HUB_HOST") == null ? "http://localhost:4444/wd/hub" : System.getenv("HUB_HOST");
-				chromeOptions.addArguments("--whitelisted-ips");
-				chromeOptions.addArguments("--no-sandbox");
+				String seleniumHubUrl = ExecutionUtils.getParameter("HUB_HOST");
+				chromeOptions.addArguments("--whitelisted-ips", "--no-sandbox");
 				try {
-					driver = new RemoteWebDriver(new URL(seleniumHubUrl), chromeOptions);
+					driver = new RemoteWebDriver(new URL("http://" + seleniumHubUrl + ":4444/wd/hub"), chromeOptions);
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}
