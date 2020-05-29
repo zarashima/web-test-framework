@@ -16,11 +16,6 @@ public class Browser {
 	@Inject
 	Wait wait;
 
-	@Inject
-	public Browser(WebDriver driver) {
-		this.driver = driver;
-	}
-
 	public void goTo(String url) {
 		LogUtils.info("Navigate to: " + url);
 		driver.get(url);

@@ -22,30 +22,36 @@ public class LogUtils {
 	//Warn Level Logs
 	public static void warn(String message) {
 		Log.warn(message);
+		ExtentTestManager.getTest().log(Status.WARNING, MarkupHelper.createLabel(message, ExtentColor.BLACK));
 	}
 
 	//Passed Level Logs
 	public static void pass(String message) {
+		Log.info(message);
 		ExtentTestManager.getTest().log(Status.PASS, MarkupHelper.createLabel(message, ExtentColor.GREEN));
 	}
 
 	//Error Level Logs
 	public static void fail(String message) {
+		Log.fatal(message);
 		ExtentTestManager.getTest().log(Status.FAIL, MarkupHelper.createLabel(message, ExtentColor.RED));
 	}
 
 	//Error Level Logs
 	public static void error(String message) {
+		Log.error(message);
 		ExtentTestManager.getTest().log(Status.ERROR, MarkupHelper.createLabel(message, ExtentColor.RED));
 	}
 
 	//Fatal Level Logs
 	public static void fatal(String message) {
+		Log.fatal(message);
 		ExtentTestManager.getTest().log(Status.FATAL, MarkupHelper.createLabel(message, ExtentColor.RED));
 	}
 
 	//Debug Level Logs
 	public static void debug(String message) {
+		Log.debug(message);
 		ExtentTestManager.getTest().log(Status.DEBUG, MarkupHelper.createLabel(message, ExtentColor.RED));
 	}
 }
