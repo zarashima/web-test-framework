@@ -11,6 +11,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import status.ResultsSender;
 import status.TestStatus;
+import utils.ExecutionUtils;
 import utils.PropertyUtils;
 
 import java.io.File;
@@ -77,7 +78,7 @@ public class TestListener implements ITestListener {
 		this.testStatus.setExecutionDate(LocalDateTime.now().toString());
 		if (!status.equals("PASSED"))
 			this.testStatus.setStatusMessage(iTestResult.getThrowable().getMessage());
-		if (PropertyUtils.getInstance().getKibanaIntegration())
+		if (ExecutionUtils.getParameter("kibana.integration").equals("true"))
 			ResultsSender.send(this.testStatus);
 	}
 }
