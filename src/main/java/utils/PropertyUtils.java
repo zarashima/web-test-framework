@@ -29,7 +29,7 @@ public class PropertyUtils {
 		}
 		webTimeout = Integer.valueOf(props.getProperty("web.timeout"));
 		autHomePage = props.getProperty("aut.homepage");
-		isKibanaIntegration = Boolean.parseBoolean(props.getProperty("kibana.intergration"));
+		isKibanaIntegration = Boolean.parseBoolean(props.getProperty("kibana.integration"));
 	}
 
 	public Integer getWebTimeout() {
