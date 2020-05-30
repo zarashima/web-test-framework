@@ -29,17 +29,13 @@ A simple automated testing framework for Web platform. Support Chrome, Firefox a
 Execute maven command and pass in the browser's name. Example:
 ```bash
 # Chrome
-./mvnw clean test -DbrowserName=chrome
+mvn clean test -DbrowserName=chrome -Dkibana.integration=false
 
 # Firefox
-./mvnw clean test -DbrowserName=firefox
-
-# IE
-./mvnw clean test -DbrowserName=ie
-```
+mvn clean test -DbrowserName=firefox -Dkibana.integration=false
 
 ### Extension
-## [Ensure](https://github.com/zarashima/java-test-framework/blob/master/src/main/java/ensure/Ensure.java) 
+## [Ensure](https://github.com/zarashima/java-test-framework/blob/master/src/main/java/ensure/Ensure.java)
 Execute designated functions before a specific event. The current one will scroll to element before element interactions. To add other ensure actions, refer to [Wait](https://github.com/zarashima/java-test-framework/blob/master/src/main/java/ensure/Wait.java) class as an example
 
 ## Drivers

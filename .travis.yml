@@ -12,5 +12,5 @@ cache:
 env:
   - RUNWHERE=pipeline
 script:
-  - mvn clean test -DbrowserName=chrome
-  - mvn clean test -DbrowserName=firefox
+  - mvn clean test -DbrowserName=chrome -Dkibana.integration=false
+  - mvn clean test -DbrowserName=firefox -Dkibana.integration=false

@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
+
       - uses: actions/checkout@v1
       - uses: actions/cache@v1
         with:
@@ -34,4 +34,4 @@ jobs:
         env:
           RUNWHERE: pipeline
         run: |
-          mvn clean test -DbrowserName=chrome
+          mvn clean test -DbrowserName=chrome -Dkibana.integration=false

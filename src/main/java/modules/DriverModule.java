@@ -21,11 +21,6 @@ public class DriverModule extends AbstractModule {
 				.annotatedWith(Chrome.class)
 				.to(ChromeDriverManager.class)
 				.in(Scopes.SINGLETON);
-
-		bind(DriverManager.class)
-				.annotatedWith(InternetExplorer.class)
-				.to(IEDriverManager.class)
-				.in(Scopes.SINGLETON);
 	}
 
 	@Provides
