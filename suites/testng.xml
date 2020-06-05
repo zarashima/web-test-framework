@@ -4,6 +4,7 @@
 	<listeners>
 		<listener class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter"></listener>
 		<listener class-name="listeners.TestListener"></listener>
+		<listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener" />
 	</listeners>
 	<test name="Login">
 		<classes>
