@@ -1,24 +1,20 @@
 package listeners;
 
 import com.aventstack.extentreports.service.ExtentTestManager;
-import com.google.inject.Inject;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import utils.LogUtils;
+import webdriver.DriverFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
-import java.util.Objects;
 
 public class TestListener implements ITestListener {
-
-	@Inject
-	WebDriver driver;
 
 	@Override
 	public synchronized void onTestStart(ITestResult result) {
@@ -30,15 +26,14 @@ public class TestListener implements ITestListener {
 
 	@Override
 	public synchronized void onTestFailure(ITestResult result) {
-		ITestContext context = Objects.requireNonNull(result).getTestContext();
-		driver = (WebDriver) context.getAttribute("driver");
 		try {
 			String base64StringOfScreenshots;
-			TakesScreenshot screenshot = (TakesScreenshot) driver;
+			TakesScreenshot screenshot = (TakesScreenshot) DriverFactory.getInstance().getDriver();
 			File src = screenshot.getScreenshotAs(OutputType.FILE);
 			byte[] fileContent = FileUtils.readFileToByteArray(src);
 			base64StringOfScreenshots = "data:image/png;base64," + Base64.getEncoder().encodeToString(fileContent);
 			ExtentTestManager.getTest(result).addScreenCaptureFromBase64String(base64StringOfScreenshots);
+			LogUtils.info("RP_MESSAGE#FILE#{}#{}", src.getAbsoluteFile(), "Screenshot on Failure");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

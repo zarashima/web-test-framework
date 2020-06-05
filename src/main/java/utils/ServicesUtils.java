@@ -37,7 +37,7 @@ public class ServicesUtils {
 		assert response != null;
 		Objects.requireNonNull(response).then().log().all();
 		if (verifyStatusCode) {
-			response.then().statusCode(StringConstants.SUCCESS_RESPONDE_CODE);
+			response.then().statusCode(StringConstants.SUCCESS_RESPONSE_CODE);
 		}
 		return response;
 	}

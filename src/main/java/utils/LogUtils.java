@@ -4,18 +4,27 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.service.ExtentTestManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 public class LogUtils {
 
 	private LogUtils() {
 	}
 
-	private static final Logger Log = Logger.getLogger(LogUtils.class.getName());
+	private static final Logger Log = LoggerFactory.getLogger(LogUtils.class);
 
 	//Info Level Logs
 	public static void info(String message) {
 		Log.info(message);
+		ExtentTestManager.getTest().log(Status.INFO, message);
+	}
+
+	//Info Level Logs
+	public static void info(String message, Object o, Object o1) {
+		Log.info(message, o, o1);
 		ExtentTestManager.getTest().log(Status.INFO, message);
 	}
 
@@ -33,7 +42,7 @@ public class LogUtils {
 
 	//Error Level Logs
 	public static void fail(String message) {
-		Log.fatal(message);
+		Log.error(MarkerFactory.getMarker("FAIL"), message);
 		ExtentTestManager.getTest().log(Status.FAIL, MarkupHelper.createLabel(message, ExtentColor.RED));
 	}
 
@@ -45,7 +54,7 @@ public class LogUtils {
 
 	//Fatal Level Logs
 	public static void fatal(String message) {
-		Log.fatal(message);
+		Log.error(MarkerFactory.getMarker("FATAL"), message);
 		ExtentTestManager.getTest().log(Status.FATAL, MarkupHelper.createLabel(message, ExtentColor.RED));
 	}
 

@@ -9,14 +9,23 @@ import keywords.Verification;
 import modules.DriverModule;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.HomePage;
 import pages.SignInPage;
+import reportportal.Launch;
+import reportportal.LaunchHandler;
 import utils.ExecutionUtils;
 import utils.ReportUtils;
 import webdriver.DriverFactory;
 
 import java.io.File;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Guice(modules = {
 		DriverModule.class
@@ -45,6 +54,9 @@ public class BaseTest {
 	@Inject
 	Wait wait;
 
+	@Inject
+	Launch launch;
+
 	@BeforeSuite
 	public void beforeSuite() {
 		System.setProperty("extent.reporter.html.out", ReportUtils.getReportFileLocation());
@@ -55,15 +67,12 @@ public class BaseTest {
 				+ File.separator + "html-config.xml");
 	}
 
-	@BeforeTest
-	public void beforeTest() {
-		driver = DriverFactory.getInstance().getDriver();
-	}
-
 	@AfterMethod(alwaysRun = true)
-	public void afterMethod() {
+	public void afterMethod(ITestResult iTestResult) {
 		String browserDetails = ((RemoteWebDriver) driver).getCapabilities().getBrowserName() + "_" +
 				((RemoteWebDriver) driver).getCapabilities().getVersion();
+		launch.setAttributes("browser", browserDetails);
+		LaunchHandler.updateLaunch(launch.getAttributes(), iTestResult.getMethod().getDescription());
 		ExtentTestManager.getTest().assignCategory(browserDetails);
 	}
 
