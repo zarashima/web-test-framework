@@ -16,6 +16,7 @@ import pages.HomePage;
 import pages.SignInPage;
 import reportportal.Launch;
 import reportportal.LaunchHandler;
+import reportportal.SessionContext;
 import utils.ExecutionUtils;
 import utils.ReportUtils;
 import webdriver.DriverFactory;
@@ -72,7 +73,8 @@ public class BaseTest {
 		String browserDetails = ((RemoteWebDriver) driver).getCapabilities().getBrowserName() + "_" +
 				((RemoteWebDriver) driver).getCapabilities().getVersion();
 		launch.setAttributes("browser", browserDetails);
-		LaunchHandler.updateLaunch(launch.getAttributes(), iTestResult.getMethod().getDescription());
+		if (SessionContext.getRpEnable())
+			LaunchHandler.updateLaunch(launch.getAttributes(), iTestResult.getMethod().getDescription());
 		ExtentTestManager.getTest().assignCategory(browserDetails);
 	}
 

@@ -52,4 +52,8 @@ public class SessionContext {
 		return reportPortalProperties.getProperty("rp.project");
 	}
 
+	public static boolean getRpEnable() {
+		return Boolean.parseBoolean(reportPortalProperties.getProperty("rp.enable"));
+	}
+
 }
