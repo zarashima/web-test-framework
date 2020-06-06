@@ -2,41 +2,49 @@
 [![Build Status](https://travis-ci.com/zarashima/selenium-test-framework.svg?branch=master)](https://travis-ci.com/zarashima/selenium-test-framework)
 ![Build Status](https://github.com/zarashima/selenium-test-framework/workflows/Build%20Status/badge.svg)
 
-### Framework Architechture
-![Framework Architechture](https://github.com/zarashima/java-test-framework/blob/master/Framework-Architecture.png)
+## Framework Architecture
+![Framework Architecture](https://github.com/zarashima/java-test-framework/blob/master/Framework-Architecture.png)
 
+## Introduction
+A web automation testing framework written in Java. Support Chrome, Firefox
 
-### Roadmap
-* Dependencies injection by Guice (Done)
-* Store executed browser information in the report (Done)
-* Ensure mechanism (Done)
-
-### Introduction
-A simple automated testing framework for Web platform. Support Chrome, Firefox and IE
-
-### Technologies
+## Technologies
 * Maven
 * TestNG
 * ExtentReport
+* Docker
+* Guice
+* ReportPortal
 
-### Features
+## Features
 * Dependencies injection using Guice
 * Ensure mechanism
 * Thread-safe driver instances
 * Auto download webdrivers (using WebDriverManager)
 
-### Usage
-Execute maven command and pass in the browser's name. Example:
+## Usage
+The framework export RUNWHERE environment variable for use in different cases. Different RUNWHERE used will change desired capabilities accordingly
+
+| RUNWHERE | Description |
+| --- | --- |
+| LOCAL | Desired capabilities for execution on local machine |
+| PIPELINE | Desired capabilities for execution on a automation pipeline |
+| CONTAINER | Desired capabilities for execution on Docker |
+
+### Enable ReportPortal integration
+By default, ReportPortal(RP) integration is disabled. Setup your RP properly first and then change RP settings in `src/test/resources/reportproperties.properties` file
+
+### Execution
+As told, RUNWHERE will determine the desired capabilities against the browser under test. Example below expose RUNWHERE environment variable as LOCAL
+Execute maven command and pass in the browser's name.
+
+If RP is enabled, it will send results to the server
+
 ```bash
+export RUNWHERE=LOCAL
 # Chrome
-mvn clean test -DbrowserName=chrome -Dkibana.integration=false
+mvn clean test -DbrowserName=chrome
 
 # Firefox
-mvn clean test -DbrowserName=firefox -Dkibana.integration=false
-
-### Extension
-## [Ensure](https://github.com/zarashima/java-test-framework/blob/master/src/main/java/ensure/Ensure.java)
-Execute designated functions before a specific event. The current one will scroll to element before element interactions. To add other ensure actions, refer to [Wait](https://github.com/zarashima/java-test-framework/blob/master/src/main/java/ensure/Wait.java) class as an example
-
-## Drivers
-Driver instances are created using Factory design pattern, refer to [webdrivers](https://github.com/zarashima/java-test-framework/tree/master/src/main/java/webdriver) package. To reduce boilerplate code, I use Guice and manage them through [DriverModule](https://github.com/zarashima/java-test-framework/blob/master/src/main/java/modules/DriverModule.java)
+mvn clean test -DbrowserName=firefox
+```
