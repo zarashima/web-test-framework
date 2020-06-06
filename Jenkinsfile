@@ -14,7 +14,7 @@ pipeline {
 		}
 		stage('Build image') {
 			steps {
-				sh 'docker build -t=vinh/selenium-docker .'
+				sh 'docker build -t=vinh/framework-docker .'
 			}
 		}
 		stage('Run tests') {
