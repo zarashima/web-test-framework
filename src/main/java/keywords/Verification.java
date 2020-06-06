@@ -9,6 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class Verification {
 
+	protected WebElement element;
+
 	@Inject
 	WebDriver driver;
 
@@ -16,8 +18,6 @@ public class Verification {
 	public Verification(WebDriver driver) {
 		this.driver = driver;
 	}
-
-	protected WebElement element;
 
 	public void verifyEqual(Object actual, Object expect) {
 		LogUtils.info("Verify " + actual + " equal to " + expect);

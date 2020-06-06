@@ -13,10 +13,10 @@ import static io.restassured.RestAssured.given;
 
 @SuppressWarnings("unchecked")
 public class LaunchHandler {
-	private LaunchHandler() {}
 	private static RequestSpecification request;
 	private static Response response;
 	private static JSONObject requestParams;
+	private LaunchHandler() {}
 
 	static {
 		request = given().headers(

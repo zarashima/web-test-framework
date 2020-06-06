@@ -10,11 +10,8 @@ import org.slf4j.MarkerFactory;
 
 public class LogUtils {
 
-	private LogUtils() {
-	}
-
 	private static final Logger Log = LoggerFactory.getLogger(LogUtils.class);
-
+	private LogUtils() {}
 	//Info Level Logs
 	public static void info(String message) {
 		Log.info(message);

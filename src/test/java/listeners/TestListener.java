@@ -18,10 +18,12 @@ public class TestListener implements ITestListener {
 
 	@Override
 	public synchronized void onTestStart(ITestResult result) {
+		LogUtils.info("Test is starting");
 	}
 
 	@Override
 	public synchronized void onTestSuccess(ITestResult result) {
+		LogUtils.pass("Test is completed and no failure");
 	}
 
 	@Override
@@ -41,6 +43,7 @@ public class TestListener implements ITestListener {
 
 	@Override
 	public synchronized void onTestSkipped(ITestResult result) {
+		LogUtils.warn("Test is skipped");
 	}
 
 	@Override
