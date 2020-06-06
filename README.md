@@ -12,7 +12,6 @@ A web automation testing framework written in Java. Support Chrome, Firefox
 * Dependencies injection using Guice
 * Ensure mechanism
 * Thread-safe driver instances
-* Auto download webdrivers (using WebDriverManager)
 * Support different types of execution against local, pipeline or container
 * ReportPortal integration
 * Docker-ready files for easy CI/CD integration
@@ -20,6 +19,8 @@ A web automation testing framework written in Java. Support Chrome, Firefox
 ## Technologies
 * Maven
 * TestNG
+* Logback
+* WebDriverManager
 * ExtentReport
 * Docker
 * Guice
