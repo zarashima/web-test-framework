@@ -41,6 +41,8 @@ By default, [ReportPortal](https://reportportal.io/) (RP) integration is disable
 As told, RUNWHERE will determine the desired capabilities against the browser under test. Example below expose RUNWHERE environment variable as LOCAL
 Execute maven command and pass in the browser's name. If RP is enabled, it will send results to the server.
 
+![RP Integration](https://github.com/zarashima/java-test-framework/blob/master/images/reportportal.png)
+
 Local execution
 ```bash
 export RUNWHERE=LOCAL
