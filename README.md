@@ -3,10 +3,19 @@
 ![Build Status](https://github.com/zarashima/selenium-test-framework/workflows/Build%20Status/badge.svg)
 
 ## Framework Architecture
-![Framework Architecture](https://github.com/zarashima/java-test-framework/blob/master/Framework-Architecture.png)
+![Framework Architecture](https://github.com/zarashima/java-test-framework/blob/master/images/architecture.png)
 
 ## Introduction
 A web automation testing framework written in Java. Support Chrome, Firefox
+
+## Features
+* Dependencies injection using Guice
+* Ensure mechanism
+* Thread-safe driver instances
+* Auto download webdrivers (using WebDriverManager)
+* Support different types of execution against local, pipeline or container
+* ReportPortal integration
+* Docker-ready files for easy CI/CD integration
 
 ## Technologies
 * Maven
@@ -15,12 +24,6 @@ A web automation testing framework written in Java. Support Chrome, Firefox
 * Docker
 * Guice
 * ReportPortal
-
-## Features
-* Dependencies injection using Guice
-* Ensure mechanism
-* Thread-safe driver instances
-* Auto download webdrivers (using WebDriverManager)
 
 ## Usage
 The framework export RUNWHERE environment variable for use in different cases. Different RUNWHERE used will change desired capabilities accordingly
@@ -32,14 +35,13 @@ The framework export RUNWHERE environment variable for use in different cases. D
 | CONTAINER | Desired capabilities for execution on Docker |
 
 ### Enable ReportPortal integration
-By default, ReportPortal(RP) integration is disabled. Setup your RP properly first and then change RP settings in `src/test/resources/reportproperties.properties` file
+By default, [ReportPortal](https://reportportal.io/) (RP) integration is disabled. Setup your RP properly first and then change RP settings in `src/test/resources/reportproperties.properties` file
 
 ### Execution
 As told, RUNWHERE will determine the desired capabilities against the browser under test. Example below expose RUNWHERE environment variable as LOCAL
-Execute maven command and pass in the browser's name.
+Execute maven command and pass in the browser's name. If RP is enabled, it will send results to the server.
 
-If RP is enabled, it will send results to the server
-
+Local execution
 ```bash
 export RUNWHERE=LOCAL
 # Chrome
