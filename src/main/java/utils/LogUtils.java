@@ -6,7 +6,6 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.service.ExtentTestManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
 public class LogUtils {

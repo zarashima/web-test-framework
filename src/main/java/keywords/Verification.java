@@ -1,11 +1,10 @@
 package keywords;
 
 import com.google.inject.Inject;
-import ensure.Wait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utils.LogUtils;
-import utils.WebElementUtils;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Verification {

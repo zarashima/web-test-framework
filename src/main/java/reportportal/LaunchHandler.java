@@ -6,10 +6,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import static io.restassured.RestAssured.given;
 
