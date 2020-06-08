@@ -44,12 +44,33 @@ Execute maven command and pass in the browser's name. If RP is enabled, it will 
 
 ![RP Integration](https://github.com/zarashima/java-test-framework/blob/master/images/reportportal.png)
 
-Local execution
+### Local
 ```bash
 export RUNWHERE=LOCAL
+
 # Chrome
 mvn clean test -DbrowserName=chrome
 
 # Firefox
 mvn clean test -DbrowserName=firefox
 ```
+
+## Container
+### Prerequisites
+By default docker-compose file will roll up Selenium Grid automatically, and run the tests in `vinh/framework-docker` container
+
+`vinh/frameworkd-docker` is a custom container which is achived by below command
+
+```bash
+# Build dockerfile using vinh/
+docker build -t=vinh/framework-docker .
+```
+You cange the tag's name after `-t` to whatever you want but ensure to change it consistently in [docker-compose](https://github.com/zarashima/selenium-test-framework/blob/db2214a7dc7154d2d8ab8cfdde7bd4a64b95fbea/docker-compose.yaml#L30) also
+
+### Execution
+No need to export RUNWHERE=container. The commands in docker-compose has already done it for you.
+
+Execute docker-compose command
+`docker-compose up -d`
+
+Moreover, scale up of Chrome/Firefox nodes is possible using docker-compose command. Refer to Docker guide for more details
