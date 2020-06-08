@@ -2,13 +2,13 @@
 [![Build Status](https://travis-ci.com/zarashima/selenium-test-framework.svg?branch=master)](https://travis-ci.com/zarashima/selenium-test-framework)
 ![Build Status](https://github.com/zarashima/selenium-test-framework/workflows/Build%20Status/badge.svg)
 
-## Framework Architecture
+# Framework Architecture
 ![Framework Architecture](https://github.com/zarashima/java-test-framework/blob/master/images/architecture.png)
 
-## Introduction
+# Introduction
 A web automation testing framework written in Java. Support Chrome, Firefox
 
-## Features
+# Features
 * Dependencies injection using Guice
 * Ensure mechanism
 * Thread-safe driver instances
@@ -16,7 +16,7 @@ A web automation testing framework written in Java. Support Chrome, Firefox
 * ReportPortal integration
 * Docker-ready files for easy CI/CD integration
 
-## Technologies
+# Technologies
 * Maven
 * TestNG
 * Logback
@@ -26,7 +26,7 @@ A web automation testing framework written in Java. Support Chrome, Firefox
 * Guice
 * ReportPortal
 
-## Usage
+# Usage
 The framework export RUNWHERE environment variable for use in different cases. Different RUNWHERE used will change desired capabilities accordingly
 
 | RUNWHERE | Description |
@@ -35,10 +35,10 @@ The framework export RUNWHERE environment variable for use in different cases. D
 | PIPELINE | Desired capabilities for execution on a automation pipeline |
 | CONTAINER | Desired capabilities for execution on Docker |
 
-### Enable ReportPortal integration
+## Enable ReportPortal integration
 By default, [ReportPortal](https://reportportal.io/) (RP) integration is disabled. Setup your RP properly first and then change RP settings in `src/test/resources/reportproperties.properties` file
 
-### Execution
+## Execution
 As told, RUNWHERE will determine the desired capabilities against the browser under test. Example below expose RUNWHERE environment variable as LOCAL
 Execute maven command and pass in the browser's name. If RP is enabled, it will send results to the server.
 
