@@ -33,7 +33,6 @@ services:
       - firefox
     environment:
       - MODULE=testng.xml
-      - BROWSER=chrome
       - HUB_HOST=selenium-hub
     volumes:
       - /Users/vinh.nguyen/Desktop/docker/selenium-hub/reports:/TestReport
@@ -45,7 +44,6 @@ services:
       - firefox
     environment:
       - MODULE=testng.xml
-      - BROWSER=chrome
       - HUB_HOST=selenium-hub
     volumes:
       - /Users/vinh.nguyen/Desktop/docker/selenium-hub/reports:/TestReport

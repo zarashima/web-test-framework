@@ -6,7 +6,10 @@ import com.google.inject.Scopes;
 import ensure.Wait;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import webdriver.*;
+import webdriver.ChromeDriverManager;
+import webdriver.DriverFactory;
+import webdriver.DriverManager;
+import webdriver.FirefoxDriverManager;
 
 public class DriverModule extends AbstractModule {
 
