@@ -48,18 +48,15 @@ Execute maven command and pass in the browser's name. If RP is enabled, it will 
 ```bash
 export RUNWHERE=LOCAL
 
-# Chrome
-mvn clean test -DbrowserName=chrome
-
-# Firefox
-mvn clean test -DbrowserName=firefox
+# Parallel executions on Chrome and Firefox
+mvn clean test
 ```
 
 ## Container
 ### Prerequisites
 By default docker-compose file will roll up Selenium Grid automatically, and run the tests in `vinh/framework-docker` container
 
-`vinh/frameworkd-docker` is a custom container which is achived by below command
+`vinh/framework-docker` is a custom container which is achived by below command
 
 ```bash
 # Build dockerfile using vinh/
