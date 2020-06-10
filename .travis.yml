@@ -12,4 +12,4 @@ cache:
 env:
   - RUNWHERE=pipeline
 script:
-  - mvn clean test
+  - mvn clean test -Dsuite=suite

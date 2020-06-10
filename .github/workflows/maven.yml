@@ -34,4 +34,4 @@ jobs:
         env:
           RUNWHERE: pipeline
         run: |
-          mvn clean test
+          mvn clean test -Dsuite=suite

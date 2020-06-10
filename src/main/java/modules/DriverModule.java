@@ -2,43 +2,26 @@ package modules;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.google.inject.Scopes;
 import ensure.Wait;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import webdriver.ChromeDriverManager;
-import webdriver.DriverFactory;
 import webdriver.DriverManager;
-import webdriver.FirefoxDriverManager;
 
 public class DriverModule extends AbstractModule {
 
-	@Override
-	protected void configure() {
-		bind(DriverManager.class)
-				.annotatedWith(Firefox.class)
-				.to(FirefoxDriverManager.class)
-				.in(Scopes.SINGLETON);
-
-		bind(DriverManager.class)
-				.annotatedWith(Chrome.class)
-				.to(ChromeDriverManager.class)
-				.in(Scopes.SINGLETON);
-	}
-
 	@Provides
 	public WebDriver getDriver() {
-		return DriverFactory.getInstance().getDriver();
+		return DriverManager.getDriver();
 	}
 
 	@Provides
 	public Wait getWait() {
-		return new Wait(DriverFactory.getInstance().getDriver());
+		return new Wait(DriverManager.getDriver());
 	}
 
 	@Provides
 	public JavascriptExecutor getJsExecutor() {
-		return (JavascriptExecutor) DriverFactory.getInstance().getDriver();
+		return (JavascriptExecutor) DriverManager.getDriver();
 	}
 
 }
