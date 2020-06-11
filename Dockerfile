@@ -13,7 +13,7 @@ COPY target/libs									libs
 COPY src/test/resources				   				src/test/resources
 
 # ADD suite files
-COPY src/test/resources/suites/suite.xml			src/test/resources/suites/suite.xml
+COPY src/test/resources/suites/suite.xml			suite.xml
 
 # ADD bash file for execution
 COPY healthcheck.sh									healthcheck.sh

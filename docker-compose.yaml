@@ -33,6 +33,6 @@ services:
       - firefox
     environment:
       - HUB_HOST=selenium-hub
-      - SUITE=src/test/resources/suites/suite.xml
+      - SUITE=suite.xml
     volumes:
       - ./output/book-result:/usr/share/udemy/test-output
