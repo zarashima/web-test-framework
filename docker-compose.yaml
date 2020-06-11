@@ -35,4 +35,4 @@ services:
       - HUB_HOST=selenium-hub
       - SUITE=suite.xml
     volumes:
-      - ./output/book-result:/usr/share/udemy/test-output
+      - /Users/vinh.nguyen/Desktop/docker/selenium-hub/reports:/TestReport
