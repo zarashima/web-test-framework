@@ -2,7 +2,7 @@ FROM openjdk:8u191-jre-alpine3.8
 
 RUN apk add curl jq
 
-WORKDIR /usr/share/udemy
+WORKDIR /usr/share/vinh
 
 # ADD .jar & libs files under target from host
 COPY target/framework-1.0.jar 						framework-1.0.jar
