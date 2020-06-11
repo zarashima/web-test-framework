@@ -9,7 +9,6 @@ public class LocalDriverManager implements IDriver {
     @Override
     public WebDriver createInstance(String browser) {
         WebDriver driver = null;
-		String runWhere = System.getenv("RUNWHERE");
 		DriverManagerType driverManagerType = DriverManagerType.valueOf(browser.toUpperCase());
 		WebDriverManager.getInstance(driverManagerType).setup();
 		switch(driverManagerType) {
@@ -22,11 +21,6 @@ public class LocalDriverManager implements IDriver {
 			default:
 				throw new IllegalArgumentException("Not supported browser");
 		}
-
-		//driver = (WebDriver) driverClass.getDeclaredConstructor().newInstance();
-			/*ChromeOptions chromeOptions = new ChromeOptions();
-			chromeOptions.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-			driver = new ChromeDriver(chromeOptions);*/
 		return driver;
     }
 }
