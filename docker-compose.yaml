@@ -32,8 +32,7 @@ services:
       - chrome
       - firefox
     environment:
-      - MODULE=testng.xml
       - HUB_HOST=selenium-hub
-      - SUITE=suite
+      - SUITE=src/test/resources/suites/suite.xml
     volumes:
-      - /Users/vinh.nguyen/Desktop/docker/selenium-hub/reports:/TestReport
+      - ./output/book-result:/usr/share/udemy/test-output

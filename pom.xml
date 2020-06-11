@@ -55,7 +55,7 @@
 				<configuration>
 					<suiteXmlFiles>
 						<!--suppress UnresolvedMavenProperty -->
-						<suiteXmlFile>src/test/resources/suites/${suite}.xml</suiteXmlFile>
+						<suiteXmlFile>${project.basedir}/src/test/resources/suites/${suite}.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
