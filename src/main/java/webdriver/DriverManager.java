@@ -23,11 +23,10 @@ public class DriverManager {
         driver.remove();
     }
 
-    public static String getInfo() {
+    public static String getBrowserName() {
         Capabilities cap = ((RemoteWebDriver) DriverManager.getDriver()).getCapabilities();
         String browserName = cap.getBrowserName();
-        String platform = cap.getPlatform().toString();
         String version = cap.getVersion();
-        return String.format("browser: %s v: %s platform: %s", browserName, version, platform);
+        return String.format("%s_%s", browserName, version);
     }
 }

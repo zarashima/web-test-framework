@@ -29,6 +29,7 @@ public class BaseTest {
 	HomePage homePage;
 	SignInPage signInPage;
 	Launch launch;
+	static String browsers = "";
 
 	@BeforeSuite
 	public void beforeSuite() {
@@ -56,11 +57,11 @@ public class BaseTest {
 
 	@AfterMethod(alwaysRun = true)
 	public void afterMethod(ITestResult iTestResult) {
-		System.out.println(DriverManager.getInfo());
-		launch.setAttributes("browser", DriverManager.getInfo());
+		browsers = browsers + DriverManager.getBrowserName() + "_";
+		launch.setAttributes("browser", browsers);
 		if (SessionContext.getRpEnable())
 			LaunchHandler.updateLaunch(launch.getAttributes(), iTestResult.getMethod().getDescription());
-		ExtentTestManager.getTest().assignCategory(DriverManager.getInfo());
+		ExtentTestManager.getTest().assignCategory(DriverManager.getBrowserName());
 	}
 
 	@AfterTest
