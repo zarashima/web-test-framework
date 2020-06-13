@@ -3,6 +3,8 @@ package tests;
 import com.aventstack.extentreports.service.ExtentTestManager;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import modules.TestInfo;
+import modules.TestParameters;
 import webdriver.DriverManager;
 import keywords.Browser;
 import keywords.Element;
@@ -58,9 +60,15 @@ public class BaseTest {
 	@AfterMethod(alwaysRun = true)
 	public void afterMethod(ITestResult iTestResult) {
 		browsers = browsers + DriverManager.getBrowserName() + "_";
-		launch.setAttributes("browser", browsers);
+		Class<?> clazz = iTestResult.getTestClass().getRealClass();
 		if (SessionContext.getRpEnable())
+		{
+			launch.setAttributes("browser", browsers);
+			launch.setAttributes("module", TestParameters.getModule(clazz));
+			launch.setAttributes("priority", TestParameters.getPriority(clazz).name());
+			launch.setAttributes("createdBy", TestParameters.getCreatedBy(clazz));
 			LaunchHandler.updateLaunch(launch.getAttributes(), iTestResult.getMethod().getDescription());
+		}
 		ExtentTestManager.getTest().assignCategory(DriverManager.getBrowserName());
 	}
 
