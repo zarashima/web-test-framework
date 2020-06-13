@@ -4,12 +4,8 @@ import com.google.inject.Inject;
 import modules.TestInfo.Priority;
 
 public class TestParameters {
-  @Inject
-  public TestParameters(Class T) {
-    checkTestInfoAnnotation(T);
-  }
 
-  private void checkTestInfoAnnotation(Class T)  {
+  private static synchronized void checkTestInfoAnnotation(Class T) {
     if (!T.isAnnotationPresent(TestInfo.class)) {
       throw new RuntimeException("The class "
           + T.getSimpleName()
@@ -18,15 +14,18 @@ public class TestParameters {
   }
 
   public static synchronized String getModule(Class T) {
+  	checkTestInfoAnnotation(T);
     return ((TestInfo) T.getAnnotation(TestInfo.class)).module();
   }
 
   public static synchronized Priority getPriority(Class T) {
-    return ((TestInfo) T.getAnnotation(TestInfo.class)).priority();
+	  checkTestInfoAnnotation(T);
+	  return ((TestInfo) T.getAnnotation(TestInfo.class)).priority();
   }
 
   public static synchronized String getCreatedBy(Class T) {
-    return ((TestInfo) T.getAnnotation(TestInfo.class)).createdBy();
+	  checkTestInfoAnnotation(T);
+	  return ((TestInfo) T.getAnnotation(TestInfo.class)).createdBy();
   }
 
 }

@@ -24,14 +24,14 @@ import java.io.File;
 
 public class BaseTest {
 
-	WebDriver driver;
-	Browser browserKeywords;
-	Element elementKeywords;
-	Verification verificationKeywords;
-	HomePage homePage;
-	SignInPage signInPage;
-	Launch launch;
-	static String browsers = "";
+	protected WebDriver driver;
+	protected Browser browserKeywords;
+	protected Element elementKeywords;
+	protected Verification verificationKeywords;
+	protected HomePage homePage;
+	protected SignInPage signInPage;
+	protected Launch launch;
+	protected static String browsers = "";
 
 	@BeforeSuite
 	public void beforeSuite() {
