@@ -1,5 +1,6 @@
 package webdriver.local;
 
+import org.openqa.selenium.edge.EdgeDriver;
 import webdriver.IDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
@@ -17,6 +18,9 @@ public class LocalDriverManager implements IDriver {
 				break;
 			case FIREFOX:
 				driver = new FirefoxDriverManager().createDriver();
+				break;
+			case EDGE:
+				driver = new EdgeDriverManager().createDriver();
 				break;
 			default:
 				throw new IllegalArgumentException("Not supported browser");
