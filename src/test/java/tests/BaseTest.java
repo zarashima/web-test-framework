@@ -1,15 +1,13 @@
 package tests;
 
-import com.aventstack.extentreports.service.ExtentTestManager;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import modules.TestInfo;
-import modules.TestParameters;
-import webdriver.DriverManager;
+import extentreports.ExtentTestManager;
 import keywords.Browser;
 import keywords.Element;
 import keywords.Verification;
 import modules.DriverModule;
+import modules.TestParameters;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -18,9 +16,7 @@ import pages.SignInPage;
 import reportportal.Launch;
 import reportportal.LaunchHandler;
 import reportportal.SessionContext;
-import utils.ReportUtils;
-
-import java.io.File;
+import webdriver.DriverManager;
 
 public class BaseTest {
 
@@ -32,16 +28,6 @@ public class BaseTest {
 	protected SignInPage signInPage;
 	protected Launch launch;
 	protected static String browsers = "";
-
-	@BeforeSuite
-	public void beforeSuite() {
-		System.setProperty("extent.reporter.html.out", ReportUtils.getReportFileLocation());
-		System.setProperty("extent.reporter.html.start", "true");
-		System.setProperty("extent.reporter.html.config", "src"
-				+ File.separator + "test"
-				+ File.separator + "resources"
-				+ File.separator + "html-config.xml");
-	}
 
 	@BeforeTest
 	@Parameters({"browserName"})

@@ -3,7 +3,7 @@ package utils;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.service.ExtentTestManager;
+import extentreports.ExtentTestManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MarkerFactory;
@@ -12,6 +12,7 @@ public class LogUtils {
 
 	private static final Logger Log = LoggerFactory.getLogger(LogUtils.class);
 	private LogUtils() {}
+
 	//Info Level Logs
 	public static void info(String message) {
 		Log.info(message);

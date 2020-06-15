@@ -1,8 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="Test Suite" verbose="5" parallel="tests" thread-count="2">
 	<listeners>
-		<listener class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter"></listener>
-		<listener class-name="listeners.TestListener"></listener>
+		<listener class-name="listeners.TestListener"/>
 		<listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener" />
 	</listeners>
 	<test name="Sign In test on Chrome">
