@@ -1,6 +1,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ea4a81e6a3cd4bf8a4a51b6f1f16145a)](https://www.codacy.com/manual/npvinh140589/selenium-test-framework?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=zarashima/selenium-test-framework&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.com/zarashima/selenium-test-framework.svg?branch=master)](https://travis-ci.com/zarashima/selenium-test-framework)
 ![Build Status](https://github.com/zarashima/selenium-test-framework/workflows/Build%20Status/badge.svg)
+[![<zarashima>](https://circleci.com/gh/zarashima/selenium-test-framework.svg?style=shield)](https://app.circleci.com/pipelines/github/zarashima/selenium-test-framework)
 
 # Framework Architecture
 ![Framework Architecture](https://github.com/zarashima/java-test-framework/blob/master/images/architecture.png)
