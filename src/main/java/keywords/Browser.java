@@ -3,6 +3,8 @@ package keywords;
 import com.google.inject.Inject;
 import ensure.Wait;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import utils.LogUtils;
 
@@ -43,4 +45,38 @@ public class Browser {
 		return driver.manage().getCookies();
 	}
 
+	public void setWindowsSize(int width, int height) {
+		LogUtils.info("Set windows size");
+		if (width == 0 || height == 0) {
+			LogUtils.fail("Either width or height is set to 0 which is invalid");
+		}
+		else {
+			driver.manage().window().setSize(new Dimension(width, height));
+		}
+	}
+
+	public void setFullScreen() {
+		LogUtils.info("Set browser windows to full screen");
+		driver.manage().window().fullscreen();
+	}
+
+	public Point getPosition() {
+		LogUtils.info("Set windows size");
+		return driver.manage().window().getPosition();
+	}
+
+	public void switchToNewWindow() {
+		LogUtils.info("Switch to new window");
+		String parentHandle = driver.getWindowHandle();
+		Set<String> allHandles = driver.getWindowHandles();
+		for (String handle : allHandles) {
+			if (!handle.equals(parentHandle))
+				driver.switchTo().window(handle);
+		}
+	}
+
+	public void switchBackToDefaultContent() {
+		LogUtils.info("Switch back to default content");
+		driver.switchTo().defaultContent();
+	}
 }
