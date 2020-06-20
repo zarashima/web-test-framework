@@ -1,7 +1,7 @@
 package modules;
 
-import com.google.inject.Inject;
-import modules.TestInfo.Priority;
+import annotations.TestInfo;
+import annotations.TestInfo.Priority;
 
 public class TestParameters {
 

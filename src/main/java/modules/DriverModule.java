@@ -1,5 +1,6 @@
 package modules;
 
+import annotations.Window;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.matcher.Matchers;

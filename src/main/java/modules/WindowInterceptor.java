@@ -1,5 +1,6 @@
 package modules;
 
+import annotations.Window;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import webdriver.DriverManager;
