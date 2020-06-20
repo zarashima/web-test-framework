@@ -3,6 +3,7 @@
 	<listeners>
 		<listener class-name="listeners.TestListener"/>
 		<listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener" />
+		<listener class-name="listeners.AnnotationTransformer"/>
 	</listeners>
 	<test name="Sign In test on Chrome">
 		<parameter name="browserName" value="chrome"/>
