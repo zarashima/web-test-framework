@@ -1,13 +1,15 @@
-package modules;
+package annotations;
 
+import com.google.inject.BindingAnnotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Retention(RetentionPolicy.RUNTIME)
+@BindingAnnotation
 @Target({ElementType.TYPE})
-public @interface Module {
-  String module() default "none";
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Window {
+	int value() default 0;
 }

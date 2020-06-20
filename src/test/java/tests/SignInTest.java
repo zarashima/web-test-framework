@@ -1,14 +1,11 @@
 package tests;
 
-import modules.TestInfo;
-import modules.TestInfo.Priority;
-import org.junit.Assert;
-import org.testng.annotations.DataProvider;
+import annotations.TestInfo;
 import org.testng.annotations.Test;
 import utils.PropertyUtils;
 
 @TestInfo(module = "signin",
-		priority = Priority.MEDIUM,
+		priority = TestInfo.Priority.MEDIUM,
 		createdBy = "vinh.nguyen")
 public class SignInTest extends BaseTest {
 	@Test(description = "Verify invalid message is displayed when using invalid email and password")
