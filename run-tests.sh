@@ -6,4 +6,4 @@ echo "Build docker image"
 docker build -t=vinh/frameworkdocker .
 
 echo "Run tests"
-docker-compose up --force-recreate
+docker-compose up -d --force-recreate
