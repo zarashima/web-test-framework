@@ -56,8 +56,6 @@
 					<suiteXmlFiles>
 						<!--suppress UnresolvedMavenProperty -->
 						<suiteXmlFile>${project.basedir}/src/test/resources/suites/${suite}.xml</suiteXmlFile>
-						<forkCount>0</forkCount>
-						<useSystemClassLoader>false</useSystemClassLoader>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
