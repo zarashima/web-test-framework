@@ -8,14 +8,14 @@ docker build -t=vinh/frameworkdocker .
 echo "Run tests"
 docker-compose up -d --force-recreate
 
-echo "Docker compose logs"
-docker-compose logs -t
-
-LINE_TO_CONTAIN="exited with code"
-SLEEP_TIME=10
-until [[ $(cat $(docker-compose logs -t > output.log) | grep "${LINE_TO_CONTAIN}") ]]
+echo "Execution logs"
+docker-compose logs > output.log
+while [[ !($(cat output.log | grep "Total tests run")) ]]
 do
-    sleep ${SLEEP_TIME}
+	docker-compose logs > output.log
+	docker-compose logs --tail=100
+    sleep 1
 done
 
-docker-compose logs --tail=100
+echo "End test"
+docker-compose down
