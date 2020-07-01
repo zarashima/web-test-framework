@@ -15,7 +15,7 @@ echo "Execution logs"
 docker-compose logs > output.log
 while [[ !($(cat output.log | grep "Total tests run")) ]]
 do
-	docker-compose logs > output.log
 	docker-compose logs --tail=100
+	docker-compose logs --tail=100 > output.log
     sleep 1
 done

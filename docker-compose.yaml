@@ -35,4 +35,5 @@ services:
       - HUB_HOST=selenium-hub
       - SUITE=suite.xml
     volumes:
-      - /Users/vinh.nguyen/Desktop/docker/selenium-hub/reports:/TestReport
+      - ./TestReport:/usr/share/vinh/TestReport
+      - ./results:/usr/share/vinh/test-output
