@@ -5,6 +5,9 @@ mvn clean package -DskipTests=true
 echo "Build docker image"
 docker build -t=vinh/frameworkdocker .
 
+echo "Cleanup previous docker compose"
+docker-compose down --rmi local
+
 echo "Run tests"
 docker-compose up -d --force-recreate
 
@@ -16,6 +19,3 @@ do
 	docker-compose logs --tail=100
     sleep 1
 done
-
-echo "End test"
-docker-compose down
