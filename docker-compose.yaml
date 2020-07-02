@@ -1,4 +1,4 @@
-version: "3"
+version: "2"
 services:
   selenium-hub:
     image: selenium/hub:3.141.59-20200409
@@ -26,14 +26,14 @@ services:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
 
-  signin:
+  smoke:
     image: vinh/framework-docker
     depends_on:
       - chrome
       - firefox
     environment:
       - HUB_HOST=selenium-hub
-      - SUITE=suite.xml
+      - SUITE="${SUITE}"
     volumes:
       - ./TestReport:/usr/share/vinh/TestReport
       - ./results:/usr/share/vinh/test-output

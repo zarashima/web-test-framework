@@ -9,13 +9,13 @@ echo "Cleanup previous docker compose"
 docker-compose down --rmi local
 
 echo "Run tests"
-docker-compose up -d --force-recreate
+SUITE=$1 docker-compose up -d --force-recreate
 
 echo "Execution logs"
 docker-compose logs > output.log
 while [[ !($(cat output.log | grep "Total tests run")) ]]
 do
-	docker-compose logs --tail=100
-	docker-compose logs --tail=100 > output.log
+	docker-compose logs --tail=1000
+	docker-compose logs --tail=1000 > output.log
     sleep 1
 done

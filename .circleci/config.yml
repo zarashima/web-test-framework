@@ -31,7 +31,7 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvn test -Dsuite=suite
+      - run: mvn test -Dsuite=SmokeSuite
 
       - run:
           name: Save test results
