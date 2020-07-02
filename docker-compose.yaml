@@ -35,5 +35,5 @@ services:
       - HUB_HOST=selenium-hub
       - SUITE="${SUITE}"
     volumes:
-      - ./TestReport:/usr/share/vinh/TestReport
-      - ./results:/usr/share/vinh/test-output
+      - ./TestReport:/usr/share/framework/TestReport
+      - ./results:/usr/share/framework/test-output
