@@ -5,17 +5,18 @@ RUN apk add curl jq
 WORKDIR /usr/share/framework
 
 # ADD .jar & libs files under target from host
-COPY target/framework-1.0.jar 							framework-1.0.jar
-COPY target/framework-1.0-tests.jar						framework-1.0-tests.jar
-COPY target/libs										libs
+COPY target/framework-1.0.jar 									framework-1.0.jar
+COPY target/framework-1.0-tests.jar								framework-1.0-tests.jar
+COPY target/libs												libs
 
 # ADD resources folder
-COPY src/test/resources				   					src/test/resources
+COPY src/test/resources				   							src/test/resources
 
 # ADD suite files
-COPY src/test/resources/suites/SmokeSuite.xml			SmokeSuite.xml
+COPY src/test/resources/suites/SmokeSuite.xml					SmokeSuite.xml
+COPY src/test/resources/suites/RegressionSuite.xml.xml			RegressionSuite.xml
 
 # ADD bash file for execution
-COPY healthcheck.sh										healthcheck.sh
+COPY healthcheck.sh												healthcheck.sh
 
 ENTRYPOINT sh healthcheck.sh
