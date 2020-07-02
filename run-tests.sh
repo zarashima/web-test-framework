@@ -3,7 +3,7 @@ echo "Package project"
 mvn clean package -DskipTests=true
 
 echo "Build docker image"
-docker build -t=vinh/frameworkdocker .
+docker build -t=vinh/framework-docker .
 
 echo "Cleanup previous docker compose"
 docker-compose down --rmi local
