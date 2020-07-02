@@ -14,7 +14,7 @@ COPY src/test/resources				   							src/test/resources
 
 # ADD suite files
 COPY src/test/resources/suites/SmokeSuite.xml					SmokeSuite.xml
-COPY src/test/resources/suites/RegressionSuite.xml.xml			RegressionSuite.xml
+COPY src/test/resources/suites/RegressionSuite.xml				RegressionSuite.xml
 
 # ADD bash file for execution
 COPY healthcheck.sh												healthcheck.sh
