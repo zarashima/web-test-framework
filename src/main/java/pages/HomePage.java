@@ -23,9 +23,9 @@ public class HomePage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public SignInPage goToSignInPage() {
+	public HomePage goToSignInPage() {
 		elementKeywords.click(userMenuButton);
 		elementKeywords.click(signInButton);
-		return new SignInPage(driver);
+		return this;
 	}
 }

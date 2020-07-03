@@ -26,7 +26,7 @@ public class SignInPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public SignInPage signInWith(String email, String password) {
+	public SignInPage signIn(String email, String password) {
 		elementKeywords.setText(emailField, email);
 		elementKeywords.setText(passwordField, password);
 		elementKeywords.click(signInButton);
