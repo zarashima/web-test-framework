@@ -4,14 +4,14 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import extentreports.ExtentManager;
+import extentreports.ExtentTestManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import extentreports.ExtentManager;
-import extentreports.ExtentTestManager;
 import utils.LogUtils;
 import webdriver.DriverManager;
 

@@ -20,6 +20,9 @@ public class SignInPage extends BasePage {
 	@FindBy(css = "div[class='alert alert-danger']")
 	private WebElement errorMessageDiv;
 
+	@FindBy(xpath = "/html/body/div[2]/div")
+	private WebElement userProfileForm;
+
 	@Inject
 	public SignInPage(WebDriver driver) {
 		super(driver);
@@ -31,6 +34,10 @@ public class SignInPage extends BasePage {
 		elementKeywords.setText(passwordField, password);
 		elementKeywords.click(signInButton);
 		return this;
+	}
+
+	public boolean verifyUserProfileFormDisplayed() {
+		return elementKeywords.verifyElementDisplayed(userProfileForm);
 	}
 
 	public String getErrorMessage() {

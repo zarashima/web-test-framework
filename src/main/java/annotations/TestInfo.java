@@ -18,4 +18,5 @@ public @interface TestInfo {
   Priority priority() default Priority.MEDIUM;
 
   String createdBy() default "vinh.nguyen";
+
 }

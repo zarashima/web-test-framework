@@ -6,17 +6,25 @@ import extentreports.ExtentTestManager;
 import keywords.Browser;
 import keywords.Element;
 import keywords.Verification;
+import listeners.ListenersManager;
 import modules.DriverModule;
 import modules.TestParameters;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import pages.HomePage;
 import pages.SignInPage;
+import properties.ConfigurationManager;
 import reportportal.Launch;
 import reportportal.LaunchHandler;
-import reportportal.SessionContext;
+import webdriver.DriverFactory;
 import webdriver.DriverManager;
+import webdriver.local.MyEventFiringWebDriver;
+
+import static annotations.TestIntegration.Event;
 
 public class BaseTest {
 
@@ -28,13 +36,15 @@ public class BaseTest {
 	protected SignInPage signInPage;
 	protected Launch launch;
 	protected static String browsers = "";
+	ListenersManager listenersManager;
 
-	@BeforeTest
+	@BeforeMethod
 	@Parameters({"browserName"})
-	public void beforeTest(String browserName) {
+	public void beforeMethod(String browserName, ITestResult iTestResult) {
 		Injector injector = Guice.createInjector(new DriverModule());
-		driver = webdriver.DriverFactory.createInstance(browserName);
-		DriverManager.setDriver(driver);
+		driver = DriverFactory.createInstance(browserName);
+		listenersManager = new ListenersManager(driver);
+		listenersManager.registerEvent(Event.NAVIGATION);
 		homePage = injector.getInstance(HomePage.class);
 		signInPage = injector.getInstance(SignInPage.class);
 		browserKeywords = injector.getInstance(Browser.class);
@@ -47,7 +57,7 @@ public class BaseTest {
 	public void afterMethod(ITestResult iTestResult) {
 		browsers = browsers + DriverManager.getBrowserName() + "_";
 		Class<?> clazz = iTestResult.getTestClass().getRealClass();
-		if (SessionContext.getRpEnable())
+		if (ConfigurationManager.loadConfiguration().rpIntegration())
 		{
 			launch.setAttributes("browser", browsers);
 			launch.setAttributes("module", TestParameters.getModule(clazz));
@@ -56,10 +66,6 @@ public class BaseTest {
 			LaunchHandler.updateLaunch(launch.getAttributes(), iTestResult.getMethod().getDescription());
 		}
 		ExtentTestManager.getTest().assignCategory(DriverManager.getBrowserName());
-	}
-
-	@AfterTest
-	public void afterTest() {
 		DriverManager.quit();
 	}
 }

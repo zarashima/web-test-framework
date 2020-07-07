@@ -1,10 +1,9 @@
 package webdriver.local;
 
-import org.openqa.selenium.edge.EdgeDriver;
-import webdriver.IDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
 import org.openqa.selenium.WebDriver;
+import webdriver.IDriver;
 
 public class LocalDriverManager implements IDriver {
     @Override

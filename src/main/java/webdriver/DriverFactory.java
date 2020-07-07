@@ -1,15 +1,15 @@
 package webdriver;
 
-import webdriver.local.LocalDriverManager;
 import org.openqa.selenium.WebDriver;
+import webdriver.local.LocalDriverManager;
 
 public class DriverFactory {
 
     private DriverFactory() {}
 
     public static WebDriver createInstance(String browser) {
-        WebDriver webdriver;
-        webdriver = new LocalDriverManager().createInstance(browser);
-        return webdriver;
+        WebDriver driver;
+		driver = new LocalDriverManager().createInstance(browser);
+        return driver;
     }
 }
