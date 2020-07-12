@@ -11,7 +11,7 @@ import static annotations.TestIntegration.Integration;
 @TestInfo(module = "signin",
 		priority = TestInfo.Priority.MEDIUM,
 		createdBy = "vinh.nguyen")
-@TestIntegration(integration = Integration.PERCY, event = Event.NAVIGATION)
+@TestIntegration(integration = Integration.PERCY, event = {Event.CLICK, Event.NAVIGATION})
 public class SignInTest extends BaseTest {
 	@Test(description = "Verify invalid message is displayed when using invalid email and password")
 	public void verifySignIn_invalidEmail_shouldPromptInvalidMessage() {

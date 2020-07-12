@@ -18,4 +18,6 @@ public class MyEventFiringWebDriver extends EventFiringWebDriver implements HasC
 	public Capabilities getCapabilities() {
 		return driver.getCapabilities();
 	}
+
+
 }

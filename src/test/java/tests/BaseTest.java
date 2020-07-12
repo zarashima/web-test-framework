@@ -1,5 +1,6 @@
 package tests;
 
+import annotations.TestIntegration;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import extentreports.ExtentTestManager;
@@ -44,7 +45,12 @@ public class BaseTest {
 		Injector injector = Guice.createInjector(new DriverModule());
 		driver = DriverFactory.createInstance(browserName);
 		listenersManager = new ListenersManager(driver);
-		listenersManager.registerEvent(Event.NAVIGATION);
+		if (iTestResult.getTestClass().getRealClass().isAnnotationPresent(TestIntegration.class)) {
+			for (Event event : TestParameters.getEvent(iTestResult.getTestClass().getRealClass()))
+				listenersManager.registerEvent(event);
+		}
+		else
+			DriverManager.setDriver(driver);
 		homePage = injector.getInstance(HomePage.class);
 		signInPage = injector.getInstance(SignInPage.class);
 		browserKeywords = injector.getInstance(Browser.class);

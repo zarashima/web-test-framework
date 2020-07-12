@@ -17,6 +17,8 @@ public class PercyIntegrationManager implements IntegrationManager {
 	public void setupIntegration() {
 		if (isIntegrated())
 			percy.set(new Percy(DriverManager.getDriver()));
+		else
+			percy.remove();
 	}
 
 	public Percy getPercy() {

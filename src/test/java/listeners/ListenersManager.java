@@ -11,6 +11,7 @@ import static annotations.TestIntegration.Event;
 public class ListenersManager {
 
 	private WebDriver driver;
+	private int number;
 
 	@Inject
 	public ListenersManager(WebDriver driver) {
@@ -22,6 +23,12 @@ public class ListenersManager {
 		switch (event) {
 			case NAVIGATION:
 				eventDriver.register(new NavigateEventsListener());
+				break;
+			case FINDELEMENT:
+				eventDriver.register(new FindByEventsListener());
+				break;
+			case CLICK:
+				eventDriver.register(new ClickEventsListener());
 				break;
 			default:
 				break;

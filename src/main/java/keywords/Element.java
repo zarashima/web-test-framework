@@ -38,7 +38,7 @@ public class Element {
 		wait.waitForElementDisplay(element);
 		wait.waitForElementClickable(element);
 		scrollIntoView(element);
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+		element.click();
 	}
 
 	public void scrollIntoView(WebElement element) {

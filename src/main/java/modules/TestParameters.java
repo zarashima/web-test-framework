@@ -4,10 +4,22 @@ import annotations.TestInfo;
 import annotations.TestInfo.Priority;
 import annotations.TestIntegration;
 
+import java.lang.annotation.Annotation;
+
+import static annotations.TestIntegration.*;
+
 public class TestParameters {
 
 	private static synchronized void checkTestInfoAnnotation(Class T) {
 		if (!T.isAnnotationPresent(TestInfo.class)) {
+			throw new RuntimeException("The class "
+					+ T.getSimpleName()
+					+ " is not annotated with TestInfo");
+		}
+	}
+
+	private static synchronized void checkTestIntegrationAnnotation(Class T) {
+		if (!T.isAnnotationPresent(TestIntegration.class)) {
 			throw new RuntimeException("The class "
 					+ T.getSimpleName()
 					+ " is not annotated with TestInfo");
@@ -29,9 +41,14 @@ public class TestParameters {
 		return ((TestInfo) T.getAnnotation(TestInfo.class)).createdBy();
 	}
 
-	public static synchronized TestIntegration.Event getEvent(Class T) {
+	public static synchronized Event[] getEvent(Class T) {
 		checkTestInfoAnnotation(T);
 		return ((TestIntegration) T.getAnnotation(TestIntegration.class)).event();
+	}
+
+	public static synchronized Integration getIntegration(Class T) {
+		checkTestIntegrationAnnotation(T);
+		return ((TestIntegration) T.getAnnotation(TestIntegration.class)).integration();
 	}
 
 }

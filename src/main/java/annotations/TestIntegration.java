@@ -16,11 +16,11 @@ public @interface TestIntegration {
 	}
 
 	public enum Event {
-		NAVIGATION, CLICK, FINDELEMENT
+		NAVIGATION, CLICK, FINDELEMENT, NONE
 	}
 
 	Integration integration() default Integration.NONE;
 
-	Event event() default Event.NAVIGATION;
+	Event[] event() default Event.NAVIGATION;
 
 }
