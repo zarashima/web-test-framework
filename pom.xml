@@ -14,6 +14,7 @@
 		<guava.version>28.1-jre</guava.version>
 		<cucumber-java.version>5.0.0-RC1</cucumber-java.version>
 		<rest-assured.version>4.1.2</rest-assured.version>
+		<rest-assured.version>4.3.1</rest-assured.version>
 		<testng.version>7.1.0</testng.version>
 		<awaitility.version>4.0.1</awaitility.version>
 		<log4j.version>1.2.17</log4j.version>
@@ -31,6 +32,21 @@
 			<id>bintray-epam-reportportal</id>
 			<name>bintray</name>
 			<url>http://dl.bintray.com/epam/reportportal</url>
+		</repository>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+		<repository>
+			<id>public</id>
+			<name>public</name>
+			<url>http://mvn.testinium.com/repository/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
 
@@ -97,13 +113,25 @@
 		<dependency>
 			<groupId>com.epam.reportportal</groupId>
 			<artifactId>agent-java-testng</artifactId>
-			<version>5.0.0-RC-1</version>
+			<version>5.0.6</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.epam.reportportal</groupId>
 			<artifactId>logger-java-logback</artifactId>
 			<version>5.0.0-RC-1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.28</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.appium</groupId>
+			<artifactId>java-client</artifactId>
+			<version>7.3.0</version>
 		</dependency>
 
 		<dependency>
@@ -201,6 +229,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.testinium.deviceinformation</groupId>
+			<artifactId>device-information</artifactId>
+			<version>2.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-junit</artifactId>
 			<version>RELEASE</version>
@@ -252,3 +286,4 @@
 
 	</dependencies>
 </project>
+
