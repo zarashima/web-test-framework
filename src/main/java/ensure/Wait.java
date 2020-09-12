@@ -33,7 +33,7 @@ public class Wait {
 	}
 
 	public void waitForElementsDisplay(List<WebElement> elements) {
-		LogUtils.info(waitPrefix + WebElementUtils.getElementsXpathInfo(elements) + " to display");
+		LogUtils.info(waitPrefix + WebElementUtils.getElementXpathInfo(elements) + " to display");
 		webDriverWait.until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 
