@@ -12,25 +12,25 @@ import java.net.URL;
 
 public class ChromeDriverManager {
 
-	public WebDriver createDriver() {
+	public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
 		ChromeOptions chromeOptions = new ChromeOptions();
-		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 		WebDriver driver = null;
 		Object runWhere = ExecutionUtils.getEnv("RUNWHERE");
 		if ("pipeline".equals(runWhere)) {
 			chromeOptions.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-			desiredCapabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-			driver = new ChromeDriver(desiredCapabilities);
+			chromeOptions.merge(desiredCapabilities);
+			driver = new ChromeDriver(chromeOptions);
 		} else if ("container".equals(runWhere)) {
 			String seleniumHubUrl = ExecutionUtils.getParameter("HUB_HOST");
 			chromeOptions.addArguments("--whitelisted-ips", "--no-sandbox");
+			chromeOptions.merge(desiredCapabilities);
 			try {
 				driver = new RemoteWebDriver(new URL("http://" + seleniumHubUrl + ":4444/wd/hub"), chromeOptions);
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
 		} else {
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(desiredCapabilities);
 		}
 		return driver;
 	}

@@ -12,24 +12,24 @@ import java.net.URL;
 
 public class FirefoxDriverManager {
 
-	public WebDriver createDriver() {
-		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+	public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
 		FirefoxOptions firefoxOptions = new FirefoxOptions();
 		WebDriver driver = null;
 		Object runWhere = ExecutionUtils.getEnv("RUNWHERE");
 		if ("pipeline".equals(runWhere)) {
-			firefoxOptions.setHeadless(true);
-			desiredCapabilities.merge(firefoxOptions);
-			driver = new FirefoxDriver(desiredCapabilities);
+			firefoxOptions.addArguments("--headless");
+			firefoxOptions.merge(desiredCapabilities);
+			driver = new FirefoxDriver(firefoxOptions);
 		} else if ("container".equals(runWhere)) {
 			String seleniumHubUrl = ExecutionUtils.getParameter("HUB_HOST");
+			firefoxOptions.merge(desiredCapabilities);
 			try {
-				driver = new RemoteWebDriver(new URL("http://" + seleniumHubUrl + ":4444/wd/hub"), firefoxOptions);
+				driver = new RemoteWebDriver(new URL("http://" + seleniumHubUrl + ":4444/wd/hub"), desiredCapabilities);
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
 		} else {
-			driver = new FirefoxDriver();
+			driver = new FirefoxDriver(desiredCapabilities);
 		}
 		return driver;
 	}

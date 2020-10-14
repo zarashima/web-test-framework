@@ -3,12 +3,17 @@ package tests;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import extentreports.ExtentTestManager;
+import gherkin.lexer.De;
 import keywords.Browser;
 import keywords.Element;
 import keywords.Verification;
 import modules.DriverModule;
 import modules.TestParameters;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.HomePage;
@@ -16,7 +21,10 @@ import pages.SignInPage;
 import reportportal.Launch;
 import reportportal.LaunchHandler;
 import reportportal.SessionContext;
+import webdriver.DriverFactory;
 import webdriver.DriverManager;
+
+import java.text.DecimalFormat;
 
 public class BaseTest {
 
@@ -33,7 +41,7 @@ public class BaseTest {
 	@Parameters({"browserName"})
 	public void beforeTest(String browserName) {
 		Injector injector = Guice.createInjector(new DriverModule());
-		driver = webdriver.DriverFactory.createInstance(browserName);
+		driver = DriverFactory.createInstance(browserName, new DesiredCapabilities());
 		DriverManager.setDriver(driver);
 		homePage = injector.getInstance(HomePage.class);
 		signInPage = injector.getInstance(SignInPage.class);
@@ -43,7 +51,7 @@ public class BaseTest {
 		launch = injector.getInstance(Launch.class);
 	}
 
-	@AfterMethod(alwaysRun = true)
+	@AfterMethod()
 	public void afterMethod(ITestResult iTestResult) {
 		browsers = browsers + DriverManager.getBrowserName() + "_";
 		Class<?> clazz = iTestResult.getTestClass().getRealClass();

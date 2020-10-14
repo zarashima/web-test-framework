@@ -25,8 +25,8 @@
 package webdriver;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public interface IDriver {
-
-    WebDriver createInstance(String browser);
+    WebDriver createInstance(String browser, DesiredCapabilities desiredCapabilities);
 }
