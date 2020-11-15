@@ -29,9 +29,6 @@ A web automation testing framework written in Java. Support Chrome, Firefox
 
 # Integration
 ReportPortal
-[CrossBrowserTesting](https://crossbrowsertesting.com/) (upcoming)
-
-![CrossBrowserTesting](https://github.com/zarashima/selenium-test-framework/blob/master/CBT_OS-logo_Black-V.png)
 
 # Usage
 The framework export RUNWHERE environment variable for use in different cases. Different RUNWHERE used will change desired capabilities accordingly
