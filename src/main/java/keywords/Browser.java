@@ -2,11 +2,11 @@ package keywords;
 
 import com.google.inject.Inject;
 import ensure.Wait;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import utils.LogUtils;
+import webdriver.DriverManager;
 
 import java.util.Set;
 
@@ -145,4 +145,25 @@ public class Browser {
 		LogUtils.info("Get window title");
 		return driver.getTitle();
 	}
+
+	public String getBrowserVersion() {
+		LogUtils.info("Get browser version");
+		return ((RemoteWebDriver) driver).getCapabilities().getVersion();
+	}
+
+	public String getBrowserName() {
+		LogUtils.info("Get browser name");
+		return ((RemoteWebDriver) driver).getCapabilities().getBrowserName();
+	}
+
+	public String getBrowserInformation() {
+		LogUtils.info("Get browser information");
+		return getBrowserName() + "_" + getBrowserVersion();
+	}
+
+	public Platform getBrowserPlatform() {
+		LogUtils.info("Get browser version");
+		return ((DesiredCapabilities) driver).getPlatform();
+	}
+
 }
