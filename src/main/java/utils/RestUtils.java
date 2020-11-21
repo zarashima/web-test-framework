@@ -10,6 +10,11 @@ import org.json.simple.JSONObject;
 
 public class RestUtils {
 
+	public static String path;
+	public static Response response;
+	public static RequestSpecification requestSpecification;
+	public static RequestSpecBuilder builder = new RequestSpecBuilder();
+
 	public enum HttpMethod {
 		GET("get"), POST("post"), PUT("put");
 
@@ -21,11 +26,6 @@ public class RestUtils {
 	}
 
 	private RestUtils() { }
-
-	public static String path;
-	public static Response response;
-	public static RequestSpecification requestSpecification;
-	public static RequestSpecBuilder builder = new RequestSpecBuilder();
 
 	public static void setHeader(String key, String value) {
 		builder.addHeader(key, value);
