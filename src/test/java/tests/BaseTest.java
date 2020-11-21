@@ -1,9 +1,23 @@
 package tests;
 
+import com.epam.reportportal.annotations.attribute.Attribute;
+import com.epam.reportportal.annotations.attribute.Attributes;
+import com.epam.reportportal.service.ReportPortal;
+import com.epam.reportportal.service.tree.ItemTreeReporter;
+import com.epam.reportportal.service.tree.TestItemTree;
+import com.epam.reportportal.testng.TestNGService;
+import com.epam.reportportal.testng.util.ItemTreeUtils;
+import com.epam.ta.reportportal.ws.model.FinishExecutionRQ;
+import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
+import com.epam.ta.reportportal.ws.model.attribute.ItemAttributesRQ;
+import com.epam.ta.reportportal.ws.model.launch.FinishLaunchRS;
+import com.epam.ta.reportportal.ws.model.launch.StartLaunchRQ;
+import com.epam.ta.reportportal.ws.model.launch.StartLaunchRS;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import extentreports.ExtentTestManager;
-import gherkin.lexer.De;
+import org.testng.collections.Sets;
+import rp.com.google.common.base.Optional;
 import keywords.Browser;
 import keywords.Element;
 import keywords.Verification;
@@ -23,8 +37,12 @@ import reportportal.LaunchHandler;
 import reportportal.SessionContext;
 import webdriver.DriverFactory;
 import webdriver.DriverManager;
+import static com.epam.reportportal.testng.TestNGService.ITEM_TREE;
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 public class BaseTest {
 
@@ -35,13 +53,13 @@ public class BaseTest {
 	protected HomePage homePage;
 	protected SignInPage signInPage;
 	protected Launch launch;
-	protected static String browsers = "";
 
 	@BeforeTest
-	@Parameters({"browserName"})
-	public void beforeTest(String browserName) {
+	@Parameters({"runWhere", "browserName"})
+	@Attributes(attributes = { @Attribute(key = "key", value = "value") })
+	public void beforeTest(String runWhere, String browserName) {
 		Injector injector = Guice.createInjector(new DriverModule());
-		driver = DriverFactory.createInstance(browserName, new DesiredCapabilities());
+		driver = DriverFactory.createInstance(runWhere, browserName, new DesiredCapabilities());
 		DriverManager.setDriver(driver);
 		homePage = injector.getInstance(HomePage.class);
 		signInPage = injector.getInstance(SignInPage.class);
@@ -52,16 +70,11 @@ public class BaseTest {
 	}
 
 	@AfterMethod()
-	public void afterMethod(ITestResult iTestResult) {
-		browsers = browsers + DriverManager.getBrowserName() + "_";
-		Class<?> clazz = iTestResult.getTestClass().getRealClass();
-		if (SessionContext.getRpEnable())
-		{
-			launch.setAttributes("browser", browsers);
-			launch.setAttributes("module", TestParameters.getModule(clazz));
-			launch.setAttributes("priority", TestParameters.getPriority(clazz).name());
-			launch.setAttributes("createdBy", TestParameters.getCreatedBy(clazz));
-			LaunchHandler.updateLaunch(launch.getAttributes(), iTestResult.getMethod().getDescription());
+	public void afterMethod(ITestResult testResult) {
+		if (SessionContext.getRpEnable()) {
+			ItemTreeUtils.retrieveLeaf(testResult, ITEM_TREE).ifPresent(testResultLeaf -> {
+				sendFinishRequest(testResultLeaf, testResult);
+			});
 		}
 		ExtentTestManager.getTest().assignCategory(DriverManager.getBrowserName());
 	}
@@ -69,5 +82,18 @@ public class BaseTest {
 	@AfterTest
 	public void afterTest() {
 		DriverManager.quit();
+	}
+
+	private void sendFinishRequest(TestItemTree.TestItemLeaf testResultLeaf, ITestResult testResult) {
+		FinishTestItemRQ finishTestItemRQ = new FinishTestItemRQ();
+		Set<ItemAttributesRQ> attributes = Optional.fromNullable(finishTestItemRQ.getAttributes())
+				.or(Sets.newHashSet(new ItemAttributesRQ("browser", DriverManager.getBrowserName())));
+		finishTestItemRQ.setAttributes(attributes);
+		finishTestItemRQ.setStatus(testResult.isSuccess() ? "PASSED" : "FAILED");
+		finishTestItemRQ.setDescription(testResult.getMethod().getDescription());
+		finishTestItemRQ.setEndTime(Calendar.getInstance().getTime());
+		ItemTreeReporter.finishItem(TestNGService.getReportPortal().getClient(), finishTestItemRQ, ITEM_TREE.getLaunchId(), testResultLeaf)
+				.cache()
+				.blockingGet();
 	}
 }
