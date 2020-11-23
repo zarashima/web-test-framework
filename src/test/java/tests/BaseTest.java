@@ -47,11 +47,11 @@ public class BaseTest {
 	protected Launch launch;
 
 	@BeforeTest
-	@Parameters({"runWhere", "browserName"})
+	@Parameters({"browserName"})
 	@Attributes(attributes = { @Attribute(key = "key", value = "value") })
 	public void beforeTest(String runWhere, String browserName) {
 		Injector injector = Guice.createInjector(new DriverModule());
-		driver = DriverFactory.createInstance(runWhere, browserName, new DesiredCapabilities());
+		driver = DriverFactory.createInstance(browserName, new DesiredCapabilities());
 		DriverManager.setDriver(driver);
 		homePage = injector.getInstance(HomePage.class);
 		signInPage = injector.getInstance(SignInPage.class);
