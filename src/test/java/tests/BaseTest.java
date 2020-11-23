@@ -48,8 +48,7 @@ public class BaseTest {
 
 	@BeforeTest
 	@Parameters({"browserName"})
-	@Attributes(attributes = { @Attribute(key = "key", value = "value") })
-	public void beforeTest(String runWhere, String browserName) {
+	public void beforeTest(String browserName) {
 		Injector injector = Guice.createInjector(new DriverModule());
 		driver = DriverFactory.createInstance(browserName, new DesiredCapabilities());
 		DriverManager.setDriver(driver);
