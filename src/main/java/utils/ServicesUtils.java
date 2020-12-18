@@ -14,7 +14,7 @@ public class ServicesUtils {
 	public enum HttpMethod {
 		GET("get"), POST("post");
 
-		private final String method;
+		public final String method;
 
 		HttpMethod(String method) {
 			this.method = method;

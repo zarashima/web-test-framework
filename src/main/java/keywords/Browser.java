@@ -6,7 +6,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import utils.LogUtils;
-import webdriver.DriverManager;
 
 import java.util.Set;
 
