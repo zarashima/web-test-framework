@@ -11,7 +11,7 @@
 		<selenium.version>3.141.59</selenium.version>
 		<webdrivermanager.version>4.0.0</webdrivermanager.version>
 		<guice.version>4.2.3</guice.version>
-		<guava.version>28.1-jre</guava.version>
+		<guava.version>29.0-jre</guava.version>
 		<cucumber-java.version>5.0.0-RC1</cucumber-java.version>
 		<rest-assured.version>4.1.2</rest-assured.version>
 		<rest-assured.version>4.3.1</rest-assured.version>
